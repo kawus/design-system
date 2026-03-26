@@ -17,11 +17,12 @@ import { FormsShowcase } from "@/components/showcase/forms";
 import { PatternsShowcase } from "@/components/showcase/patterns";
 import { InstallationShowcase } from "@/components/showcase/installation";
 import { IconsShowcase } from "@/components/showcase/icons";
+import { OverviewShowcase } from "@/components/showcase/overview";
 
 type SectionItem = {
   id: string;
   label: string;
-  component: React.ComponentType;
+  component: React.ComponentType<{ onNavigate?: (id: string) => void }>;
   description: string;
 };
 
@@ -36,6 +37,12 @@ const sidebarGroups: SidebarGroup[] = [
     label: "Getting Started",
     type: "docs",
     items: [
+      {
+        id: "overview",
+        label: "Overview",
+        component: OverviewShowcase,
+        description: "",
+      },
       {
         id: "installation",
         label: "Installation",
@@ -164,7 +171,7 @@ function getGroupType(id: string): "docs" | "examples" {
 }
 
 export default function Home() {
-  const [activeSection, setActiveSection] = useState<string>("installation");
+  const [activeSection, setActiveSection] = useState<string>("overview");
   const [isDark, setIsDark] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -281,22 +288,24 @@ export default function Home() {
 
         {/* Main content */}
         <main className="flex-1 min-w-0 overflow-y-auto">
-          {/* Breadcrumb + page header */}
-          <div className="border-b border-border/50 px-8 py-6">
-            <div className="flex items-center gap-2 text-[13px] mb-3">
-              <span className="text-muted-foreground/60">
-                {isExample ? "Examples" : "Docs"}
-              </span>
-              <span className="text-muted-foreground/40">/</span>
-              <span className="text-muted-foreground/60">{activeGroupLabel}</span>
-              <span className="text-muted-foreground/40">/</span>
-              <span className="text-foreground font-medium">{activeLabel}</span>
+          {/* Breadcrumb + page header (hidden on overview) */}
+          {activeSection !== "overview" && (
+            <div className="border-b border-border/50 px-8 py-6">
+              <div className="flex items-center gap-2 text-[13px] mb-3">
+                <span className="text-muted-foreground/60">
+                  {isExample ? "Examples" : "Docs"}
+                </span>
+                <span className="text-muted-foreground/40">/</span>
+                <span className="text-muted-foreground/60">{activeGroupLabel}</span>
+                <span className="text-muted-foreground/40">/</span>
+                <span className="text-foreground font-medium">{activeLabel}</span>
+              </div>
+              <h2 className="text-xl font-medium tracking-tight">{activeLabel}</h2>
+              <p className="mt-1 text-sm text-muted-foreground max-w-2xl">
+                {activeDescription}
+              </p>
             </div>
-            <h2 className="text-xl font-medium tracking-tight">{activeLabel}</h2>
-            <p className="mt-1 text-sm text-muted-foreground max-w-2xl">
-              {activeDescription}
-            </p>
-          </div>
+          )}
 
           {isExample ? (
             /* Example pages get a browser-frame preview wrapper */
@@ -318,14 +327,14 @@ export default function Home() {
                 </div>
                 {/* Page content */}
                 <div className="p-8 lg:p-12 bg-background">
-                  <ActiveComponent />
+                  <ActiveComponent onNavigate={setActiveSection} />
                 </div>
               </div>
             </div>
           ) : (
             /* Documentation pages render normally */
             <div className="mx-auto max-w-6xl px-8 py-12">
-              <ActiveComponent />
+              <ActiveComponent onNavigate={setActiveSection} />
             </div>
           )}
 
