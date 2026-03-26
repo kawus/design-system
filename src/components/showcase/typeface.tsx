@@ -99,8 +99,8 @@ export function TypefaceShowcase() {
           <TypeRow
             label="Display"
             sample="Design at scale"
-            classes="text-3xl md:text-4xl font-medium tracking-tight text-muted-foreground"
-            className="text-3xl md:text-4xl font-medium tracking-tight text-muted-foreground"
+            classes="text-4xl md:text-5xl font-medium tracking-tight"
+            className="text-4xl md:text-5xl font-medium tracking-tight"
           />
           <TypeRow
             label="H1"
