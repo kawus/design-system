@@ -154,13 +154,13 @@
    CUSTOM UTILITIES
    ═══════════════════════════════════════════ */
 @layer utilities {
-  /* Gradient text — Linear style */
+  /* Gradient text — subtle fade, use sparingly */
   .text-gradient {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(
       180deg,
-      oklch(0.95 0 0) 0%,
-      oklch(0.55 0 0) 100%
+      oklch(0.75 0 0) 0%,
+      oklch(0.45 0 0) 100%
     );
   }
 

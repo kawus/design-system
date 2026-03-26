@@ -3,15 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
 
 /* ─── Inline SVG Icons ─── */
@@ -115,36 +107,33 @@ const stats = [
 /* ─── Main Showcase ─── */
 export function MarketingShowcase() {
   return (
-    <div className="space-y-24">
+    <div className="space-y-20">
       {/* ═══ HERO SECTION ═══ */}
-      <section className="relative flex flex-col items-center text-center py-24 overflow-hidden">
-        {/* Glow backdrop */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-blue-500/10 blur-3xl" />
-
-        <div className="relative z-10 flex flex-col items-center gap-6 max-w-3xl mx-auto">
+      <section className="flex flex-col items-center text-center pt-16 pb-8">
+        <div className="flex flex-col items-center gap-5 max-w-2xl mx-auto">
           <Badge
             variant="outline"
-            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground px-3 py-1"
+            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60 px-3 py-1"
           >
             Introducing V2.0
           </Badge>
 
-          <h1 className="text-5xl md:text-6xl font-semibold tracking-tight text-gradient leading-[1.1]">
+          <h1 className="text-3xl md:text-4xl font-medium tracking-tight text-muted-foreground leading-snug">
             Build products at the
             <br />
             speed of thought
           </h1>
 
-          <p className="text-xl text-muted-foreground max-w-2xl">
+          <p className="text-[15px] text-muted-foreground/70 max-w-lg">
             The modern platform for teams who ship fast. Designed for developers,
             loved by everyone.
           </p>
 
           <div className="flex items-center gap-3 mt-2">
-            <Button size="lg">
+            <Button>
               Get started free
             </Button>
-            <Button variant="outline" size="lg" className="gradient-border">
+            <Button variant="outline">
               View documentation
             </Button>
           </div>
@@ -152,27 +141,27 @@ export function MarketingShowcase() {
       </section>
 
       {/* ═══ FEATURE GRID ═══ */}
-      <section className="py-16">
-        <div className="text-center mb-16">
-          <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">
+      <section>
+        <div className="text-center mb-12">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground/60 mb-3">
             Capabilities
           </p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gradient">
+          <h2 className="text-2xl font-medium tracking-tight text-muted-foreground">
             Everything you need to ship
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="glass gradient-border rounded-xl p-6 transition-all hover:border-white/20 hover:bg-white/[0.08]"
+              className="rounded-xl border border-border/50 bg-card/30 p-5 transition-colors hover:bg-accent/30"
             >
-              <div className="flex items-center justify-center size-10 rounded-lg bg-white/5 border border-white/10 mb-4">
-                <feature.icon className="size-5 text-muted-foreground" />
+              <div className="flex items-center justify-center size-8 rounded-lg bg-foreground/5 mb-3">
+                <feature.icon className="size-4 text-muted-foreground" />
               </div>
-              <h3 className="font-semibold mb-2">{feature.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <h3 className="text-sm font-medium mb-1.5">{feature.title}</h3>
+              <p className="text-[13px] text-muted-foreground leading-relaxed">
                 {feature.description}
               </p>
             </div>
@@ -181,35 +170,35 @@ export function MarketingShowcase() {
       </section>
 
       {/* ═══ BENTO GRID ═══ */}
-      <section className="py-16">
-        <div className="text-center mb-16">
-          <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">
+      <section>
+        <div className="text-center mb-12">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground/60 mb-3">
             Platform
           </p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gradient">
+          <h2 className="text-2xl font-medium tracking-tight text-muted-foreground">
             Designed for scale
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {/* Large card — spans 2 cols */}
-          <div className="lg:col-span-2 lg:row-span-2 glass gradient-border rounded-xl overflow-hidden flex flex-col">
-            <div className="flex-1 min-h-[200px] bg-gradient-to-br from-blue-500/20 via-purple-500/10 to-transparent p-6 flex items-end">
-              <div className="w-full rounded-lg bg-white/5 border border-white/10 p-4 backdrop-blur-sm">
+          <div className="lg:col-span-2 lg:row-span-2 rounded-xl border border-border/50 bg-card/30 overflow-hidden flex flex-col">
+            <div className="flex-1 min-h-[200px] bg-gradient-to-br from-foreground/[0.03] to-transparent p-6 flex items-end">
+              <div className="w-full rounded-lg border border-border/50 bg-background/50 p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="size-2 rounded-full bg-green-400" />
-                  <span className="text-xs font-mono text-muted-foreground">All systems operational</span>
+                  <div className="size-1.5 rounded-full bg-green-400/70" />
+                  <span className="text-[11px] font-mono text-muted-foreground/60">All systems operational</span>
                 </div>
                 <div className="grid grid-cols-3 gap-3">
                   {[92, 78, 95].map((val, i) => (
                     <div key={i} className="space-y-1">
-                      <div className="h-16 rounded bg-white/5 flex items-end p-1">
+                      <div className="h-14 rounded bg-foreground/[0.03] flex items-end p-1">
                         <div
-                          className="w-full rounded bg-gradient-to-t from-blue-500/40 to-blue-500/10"
+                          className="w-full rounded bg-foreground/10"
                           style={{ height: `${val}%` }}
                         />
                       </div>
-                      <p className="text-[10px] font-mono text-muted-foreground text-center">
+                      <p className="text-[10px] font-mono text-muted-foreground/50 text-center">
                         {["API", "Edge", "DB"][i]}
                       </p>
                     </div>
@@ -217,35 +206,35 @@ export function MarketingShowcase() {
                 </div>
               </div>
             </div>
-            <div className="p-6">
-              <h3 className="font-semibold text-lg mb-1">Observability dashboard</h3>
-              <p className="text-sm text-muted-foreground">
+            <div className="p-5">
+              <h3 className="text-sm font-medium mb-1">Observability dashboard</h3>
+              <p className="text-[13px] text-muted-foreground">
                 Real-time metrics across your entire stack. Instant alerts when something drifts.
               </p>
             </div>
           </div>
 
           {/* Small card 1 */}
-          <div className="lg:col-span-2 glass gradient-border rounded-xl p-6 flex items-start gap-4">
-            <div className="flex items-center justify-center size-10 rounded-lg bg-white/5 border border-white/10 shrink-0">
-              <IconLightning className="size-5 text-muted-foreground" />
+          <div className="lg:col-span-2 rounded-xl border border-border/50 bg-card/30 p-5 flex items-start gap-4">
+            <div className="flex items-center justify-center size-8 rounded-lg bg-foreground/5 shrink-0">
+              <IconLightning className="size-4 text-muted-foreground" />
             </div>
             <div>
-              <h3 className="font-semibold mb-1">Instant deployments</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <h3 className="text-sm font-medium mb-1">Instant deployments</h3>
+              <p className="text-[13px] text-muted-foreground leading-relaxed">
                 Push to deploy in under 3 seconds. Atomic rollbacks if anything goes wrong. Every commit gets a unique preview URL.
               </p>
             </div>
           </div>
 
           {/* Small card 2 */}
-          <div className="lg:col-span-2 glass gradient-border rounded-xl p-6 flex items-start gap-4">
-            <div className="flex items-center justify-center size-10 rounded-lg bg-white/5 border border-white/10 shrink-0">
-              <IconShield className="size-5 text-muted-foreground" />
+          <div className="lg:col-span-2 rounded-xl border border-border/50 bg-card/30 p-5 flex items-start gap-4">
+            <div className="flex items-center justify-center size-8 rounded-lg bg-foreground/5 shrink-0">
+              <IconShield className="size-4 text-muted-foreground" />
             </div>
             <div>
-              <h3 className="font-semibold mb-1">Zero-trust security</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <h3 className="text-sm font-medium mb-1">Zero-trust security</h3>
+              <p className="text-[13px] text-muted-foreground leading-relaxed">
                 Every request is authenticated at the edge. Automatic TLS, DDoS mitigation, and WAF included with every plan.
               </p>
             </div>
@@ -254,15 +243,15 @@ export function MarketingShowcase() {
       </section>
 
       {/* ═══ STATS / SOCIAL PROOF ═══ */}
-      <section className="py-16">
-        <div className="glass gradient-border rounded-xl p-8 md:p-12">
+      <section>
+        <div className="rounded-xl border border-border/50 bg-card/30 p-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {stats.map((stat, i) => (
+            {stats.map((stat) => (
               <div key={stat.label} className="flex flex-col items-center">
-                <span className="text-4xl font-semibold tracking-tight">
+                <span className="text-2xl font-medium tracking-tight">
                   {stat.value}
                 </span>
-                <span className="text-sm text-muted-foreground mt-1">
+                <span className="text-[13px] text-muted-foreground mt-1">
                   {stat.label}
                 </span>
               </div>
@@ -272,19 +261,19 @@ export function MarketingShowcase() {
       </section>
 
       {/* ═══ TESTIMONIAL ═══ */}
-      <section className="py-16 flex justify-center">
-        <div className="gradient-border glass rounded-xl p-8 md:p-10 max-w-2xl w-full">
-          <blockquote className="text-lg italic text-foreground/90 leading-relaxed mb-6">
+      <section className="flex justify-center">
+        <div className="rounded-xl border border-border/50 bg-card/30 p-8 max-w-2xl w-full">
+          <blockquote className="text-[15px] text-muted-foreground leading-relaxed mb-5">
             &ldquo;We migrated our entire platform in a weekend. The DX is unmatched — it feels
             like the tool was built by people who actually ship products, not just sell them.&rdquo;
           </blockquote>
           <div className="flex items-center gap-3">
-            <Avatar>
-              <AvatarFallback>SK</AvatarFallback>
+            <Avatar className="h-7 w-7">
+              <AvatarFallback className="text-[10px]">SK</AvatarFallback>
             </Avatar>
             <div>
               <p className="text-sm font-medium">Sarah Kim</p>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-[11px] text-muted-foreground/60">
                 Head of Engineering, Acme Corp
               </p>
             </div>
@@ -293,30 +282,27 @@ export function MarketingShowcase() {
       </section>
 
       {/* ═══ CTA SECTION ═══ */}
-      <section className="relative py-24 flex flex-col items-center text-center overflow-hidden">
-        {/* Glow backdrop */}
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-purple-500/10 blur-3xl" />
-
-        <div className="relative z-10 flex flex-col items-center gap-6 max-w-xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gradient">
+      <section className="flex flex-col items-center text-center py-16">
+        <div className="flex flex-col items-center gap-4 max-w-md mx-auto">
+          <h2 className="text-2xl font-medium tracking-tight text-muted-foreground">
             Start building today
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-[15px] text-muted-foreground/70">
             Join thousands of teams shipping faster with a platform that gets out of your way.
           </p>
 
-          <div className="flex w-full max-w-sm items-center gap-2">
+          <div className="flex w-full max-w-sm items-center gap-2 mt-2">
             <Input
               type="email"
               placeholder="you@company.com"
-              className="h-10"
+              className="h-9"
             />
-            <Button size="lg" className="shrink-0">
+            <Button className="shrink-0">
               Get started
             </Button>
           </div>
 
-          <p className="text-xs text-muted-foreground">
+          <p className="text-[11px] text-muted-foreground/50">
             No credit card required. Free for small teams.
           </p>
         </div>

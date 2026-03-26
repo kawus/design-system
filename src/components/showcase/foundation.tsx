@@ -147,26 +147,26 @@ export function FoundationShowcase() {
           <TypeRow
             label="Display"
             sample="Design at scale"
-            classes="text-5xl font-semibold tracking-tight text-gradient"
-            className="text-5xl font-semibold tracking-tight text-gradient"
+            classes="text-3xl md:text-4xl font-medium tracking-tight text-muted-foreground"
+            className="text-3xl md:text-4xl font-medium tracking-tight text-muted-foreground"
           />
           <TypeRow
             label="H1"
             sample="Build with precision"
-            classes="text-4xl font-semibold tracking-tight"
-            className="text-4xl font-semibold tracking-tight"
+            classes="text-2xl font-medium tracking-tight"
+            className="text-2xl font-medium tracking-tight"
           />
           <TypeRow
             label="H2"
             sample="Every pixel matters"
-            classes="text-2xl font-semibold"
-            className="text-2xl font-semibold"
+            classes="text-xl font-medium tracking-tight text-muted-foreground"
+            className="text-xl font-medium tracking-tight text-muted-foreground"
           />
           <TypeRow
             label="H3"
             sample="Components that compose"
-            classes="text-xl font-medium"
-            className="text-xl font-medium"
+            classes="text-lg font-medium"
+            className="text-lg font-medium"
           />
           <TypeRow
             label="Body"

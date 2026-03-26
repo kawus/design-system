@@ -38,7 +38,7 @@ export function ContentShowcase() {
             <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
               March 26, 2026
             </p>
-            <h2 className="text-3xl font-semibold tracking-tight">
+            <h2 className="text-xl font-medium tracking-tight">
               Why we rebuilt our component library
             </h2>
             <p className="text-muted-foreground leading-relaxed">
@@ -73,7 +73,7 @@ export function ContentShowcase() {
         <div className="bg-card rounded-xl p-8 md:p-12 ring-1 ring-foreground/5 space-y-8">
           {/* Style 1: Left border */}
           <blockquote className="border-l-2 border-foreground/20 pl-6 py-1">
-            <p className="text-lg italic text-muted-foreground leading-relaxed">
+            <p className="text-[15px] italic text-muted-foreground leading-relaxed">
               &ldquo;A design system isn&apos;t a project. It&apos;s a product, serving products.&rdquo;
             </p>
             <footer className="mt-3 text-sm text-muted-foreground/60">
@@ -81,9 +81,9 @@ export function ContentShowcase() {
             </footer>
           </blockquote>
 
-          {/* Style 2: Large pull quote */}
-          <div className="py-8">
-            <p className="text-2xl md:text-3xl font-semibold tracking-tight leading-snug text-gradient max-w-xl">
+          {/* Style 2: Pull quote */}
+          <div className="py-6">
+            <p className="text-xl font-medium tracking-tight leading-snug text-muted-foreground max-w-xl">
               &ldquo;Ship the system, then let the system ship for you.&rdquo;
             </p>
           </div>
