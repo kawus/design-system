@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 
@@ -12,13 +13,58 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ─── Color swatch ─── */
+/* ─── Resolve computed color to hex ─── */
+function rgbToHex(r: number, g: number, b: number) {
+  return "#" + [r, g, b].map((v) => v.toString(16).padStart(2, "0")).join("");
+}
+
+function getComputedHex(el: HTMLElement): string {
+  const color = getComputedStyle(el).backgroundColor;
+  const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if (!match) return color;
+  return rgbToHex(+match[1], +match[2], +match[3]);
+}
+
+/* ─── Color swatch with hover hex + click to copy ─── */
 function Swatch({ name, cssVar }: { name: string; cssVar: string }) {
+  const swatchRef = useRef<HTMLDivElement>(null);
+  const [hex, setHex] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const handleMouseEnter = useCallback(() => {
+    if (swatchRef.current) {
+      setHex(getComputedHex(swatchRef.current));
+    }
+  }, []);
+
+  const handleClick = useCallback(() => {
+    if (swatchRef.current) {
+      const value = getComputedHex(swatchRef.current);
+      navigator.clipboard.writeText(value);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    }
+  }, []);
+
   return (
     <div className="flex flex-col gap-2">
       <div
-        className={cn("h-16 w-full rounded-lg border border-border", cssVar)}
-      />
+        ref={swatchRef}
+        className={cn(
+          "h-16 w-full rounded-lg border border-border relative cursor-pointer group transition-shadow hover:ring-2 hover:ring-ring/30",
+          cssVar
+        )}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={() => { setHex(null); setCopied(false); }}
+        onClick={handleClick}
+      >
+        {/* Hover overlay with hex value */}
+        <div className="absolute inset-0 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+          <span className="font-mono text-[11px] text-white font-medium">
+            {copied ? "Copied!" : hex ?? "…"}
+          </span>
+        </div>
+      </div>
       <span className="font-mono text-xs text-muted-foreground">{name}</span>
     </div>
   );
