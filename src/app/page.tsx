@@ -13,6 +13,7 @@ import { FeedbackShowcase } from "@/components/showcase/feedback";
 import { LayoutShowcase } from "@/components/showcase/layout";
 import { FormsShowcase } from "@/components/showcase/forms";
 import { PatternsShowcase } from "@/components/showcase/patterns";
+import { InstallationShowcase } from "@/components/showcase/installation";
 
 type SectionItem = {
   id: string;
@@ -29,9 +30,15 @@ type SidebarGroup = {
 
 const sidebarGroups: SidebarGroup[] = [
   {
-    label: "Foundation",
+    label: "Getting Started",
     type: "docs",
     items: [
+      {
+        id: "installation",
+        label: "Installation",
+        component: InstallationShowcase,
+        description: "Add the design system to your project via the shadcn registry.",
+      },
       {
         id: "foundation",
         label: "Tokens & Styles",
@@ -130,7 +137,7 @@ function getGroupType(id: string): "docs" | "examples" {
 }
 
 export default function Home() {
-  const [activeSection, setActiveSection] = useState<string>("foundation");
+  const [activeSection, setActiveSection] = useState<string>("installation");
   const [isDark, setIsDark] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -140,8 +147,8 @@ export default function Home() {
   };
 
   const activeItem = allItems.find((s) => s.id === activeSection);
-  const ActiveComponent = activeItem?.component ?? FoundationShowcase;
-  const activeLabel = activeItem?.label ?? "Tokens & Styles";
+  const ActiveComponent = activeItem?.component ?? InstallationShowcase;
+  const activeLabel = activeItem?.label ?? "Installation";
   const activeDescription = activeItem?.description ?? "";
   const isExample = getGroupType(activeSection) === "examples";
   const activeGroupLabel =
