@@ -51,7 +51,7 @@ const sidebarGroups: SidebarGroup[] = [
         id: "colors",
         label: "Colors",
         component: ColorsShowcase,
-        description: "oklch color palette with base, interactive, border, chart, and custom tokens. Click any swatch to copy its oklch value.",
+        description: "oklch color palette with base, interactive, border, chart, and custom tokens.",
       },
       {
         id: "typeface",

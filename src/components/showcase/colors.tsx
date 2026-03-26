@@ -1,48 +1,17 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 
-/* ─── Read the raw CSS variable value ─── */
-function getOklchValue(varName: string): string {
-  return getComputedStyle(document.documentElement)
-    .getPropertyValue(varName)
-    .trim() || "–";
-}
-
-/* ─── Color swatch — value shown below, click to copy ─── */
 function Swatch({ name, cssVar }: { name: string; cssVar: string }) {
-  const [value, setValue] = useState<string>("");
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    setValue(getOklchValue(name));
-  }, [name]);
-
-  const handleClick = useCallback(() => {
-    const raw = getOklchValue(name);
-    navigator.clipboard.writeText(`oklch(${raw})`);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  }, [name]);
-
   return (
-    <div
-      className="flex flex-col gap-2 cursor-pointer group"
-      onClick={handleClick}
-    >
+    <div className="flex flex-col gap-2">
       <div
         className={cn(
-          "h-16 w-full rounded-lg border border-border transition-shadow group-hover:ring-2 group-hover:ring-ring/30",
+          "h-16 w-full rounded-lg border border-border",
           cssVar
         )}
       />
-      <div className="flex flex-col gap-0.5">
-        <span className="font-mono text-xs text-muted-foreground">{name}</span>
-        <span className="font-mono text-[11px] text-muted-foreground/50">
-          {copied ? "Copied!" : value}
-        </span>
-      </div>
+      <span className="font-mono text-xs text-muted-foreground">{name}</span>
     </div>
   );
 }
