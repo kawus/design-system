@@ -690,11 +690,6 @@ function CommandBar() {
 export function PatternsShowcase() {
   return (
     <div className="space-y-0">
-      <div className="mb-16">
-        <h2 className="text-lg font-medium tracking-tight mb-2">Patterns</h2>
-        <p className="text-sm text-muted-foreground max-w-2xl">Complete UI compositions built from the design system — dashboards, profiles, settings, and more.</p>
-      </div>
-
       <Section title="Dashboard Header" description="Page header with breadcrumbs, title, actions, and filters.">
         <DashboardHeader />
       </Section>

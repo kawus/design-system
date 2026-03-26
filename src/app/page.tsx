@@ -14,43 +14,120 @@ import { LayoutShowcase } from "@/components/showcase/layout";
 import { FormsShowcase } from "@/components/showcase/forms";
 import { PatternsShowcase } from "@/components/showcase/patterns";
 
-const sidebarGroups = [
+type SectionItem = {
+  id: string;
+  label: string;
+  component: React.ComponentType;
+  description: string;
+};
+
+type SidebarGroup = {
+  label: string;
+  type: "docs" | "examples";
+  items: SectionItem[];
+};
+
+const sidebarGroups: SidebarGroup[] = [
   {
-    label: "Getting Started",
+    label: "Foundation",
+    type: "docs",
     items: [
-      { id: "foundation", label: "Foundation", component: FoundationShowcase },
+      {
+        id: "foundation",
+        label: "Tokens & Styles",
+        component: FoundationShowcase,
+        description: "Design tokens, typography, color palette, spacing scale, and visual effects.",
+      },
     ],
   },
   {
     label: "Components",
+    type: "docs",
     items: [
-      { id: "core", label: "Core", component: CoreShowcase },
-      { id: "forms", label: "Forms", component: FormsShowcase },
-      { id: "data-nav", label: "Data & Navigation", component: DataNavShowcase },
-      { id: "feedback", label: "Feedback", component: FeedbackShowcase },
-      { id: "overlay", label: "Overlay", component: OverlayShowcase },
+      {
+        id: "core",
+        label: "Core",
+        component: CoreShowcase,
+        description: "Buttons, badges, inputs, selects, checkboxes, switches, and toggles.",
+      },
+      {
+        id: "forms",
+        label: "Forms",
+        component: FormsShowcase,
+        description: "Sliders, date pickers, combobox, toggle groups, and complete form patterns.",
+      },
+      {
+        id: "data-nav",
+        label: "Data & Navigation",
+        component: DataNavShowcase,
+        description: "Tables, tabs, command palettes, dropdown menus, and navigation sidebars.",
+      },
+      {
+        id: "feedback",
+        label: "Feedback",
+        component: FeedbackShowcase,
+        description: "Alerts, progress indicators, skeleton loaders, toasts, and dialogs.",
+      },
+      {
+        id: "overlay",
+        label: "Overlay",
+        component: OverlayShowcase,
+        description: "Dialogs, sheets, popovers, tooltips, and notification overlays.",
+      },
+      {
+        id: "content",
+        label: "Content",
+        component: ContentShowcase,
+        description: "Prose, blockquotes, code blocks, lists, content cards, and empty states.",
+      },
+      {
+        id: "layout",
+        label: "Layout",
+        component: LayoutShowcase,
+        description: "Accordions, tabs, scroll areas, resizable panels, breadcrumbs, and pagination.",
+      },
     ],
   },
   {
-    label: "Layout",
+    label: "Examples",
+    type: "examples",
     items: [
-      { id: "layout", label: "Layout", component: LayoutShowcase },
-      { id: "patterns", label: "Patterns", component: PatternsShowcase },
+      {
+        id: "patterns",
+        label: "Dashboard",
+        component: PatternsShowcase,
+        description: "Analytics dashboard with stat cards, activity feeds, settings, pricing, and notifications.",
+      },
+      {
+        id: "marketing",
+        label: "Landing Page",
+        component: MarketingShowcase,
+        description: "SaaS marketing page with hero, features, social proof, testimonials, and CTA.",
+      },
+      {
+        id: "article",
+        label: "Article",
+        component: ArticleShowcase,
+        description: "Long-form editorial content with callouts, diagrams, and structured prose.",
+      },
+      {
+        id: "blog-post",
+        label: "Blog Post",
+        component: BlogPostShowcase,
+        description: "Rich blog post with video, audio players, code blocks, and reader engagement.",
+      },
     ],
   },
-  {
-    label: "Content",
-    items: [
-      { id: "marketing", label: "Marketing", component: MarketingShowcase },
-      { id: "article", label: "Article", component: ArticleShowcase },
-      { id: "blog-post", label: "Blog Post", component: BlogPostShowcase },
-      { id: "content", label: "Content", component: ContentShowcase },
-    ],
-  },
-] as const;
+];
 
 const allItems = sidebarGroups.flatMap((g) => g.items);
-const fullWidthSections = new Set(["article", "blog-post"]);
+
+function getGroupType(id: string): "docs" | "examples" {
+  for (const group of sidebarGroups) {
+    if (group.items.some((item) => item.id === id)) return group.type;
+  }
+  return "docs";
+}
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<string>("foundation");
@@ -62,10 +139,13 @@ export default function Home() {
     document.documentElement.classList.toggle("dark");
   };
 
-  const ActiveComponent =
-    allItems.find((s) => s.id === activeSection)?.component ?? FoundationShowcase;
-
-  const activeLabel = allItems.find((s) => s.id === activeSection)?.label ?? "Foundation";
+  const activeItem = allItems.find((s) => s.id === activeSection);
+  const ActiveComponent = activeItem?.component ?? FoundationShowcase;
+  const activeLabel = activeItem?.label ?? "Tokens & Styles";
+  const activeDescription = activeItem?.description ?? "";
+  const isExample = getGroupType(activeSection) === "examples";
+  const activeGroupLabel =
+    sidebarGroups.find((g) => g.items.some((i) => i.id === activeSection))?.label ?? "";
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -73,7 +153,6 @@ export default function Home() {
       <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
         <div className="flex items-center justify-between h-14 px-6">
           <div className="flex items-center gap-3">
-            {/* Mobile menu toggle */}
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
               className="lg:hidden flex items-center justify-center w-8 h-8 rounded-md hover:bg-accent/50 transition-colors text-muted-foreground hover:text-foreground"
@@ -86,7 +165,9 @@ export default function Home() {
               <span className="text-foreground">Design</span>
               <span className="text-muted-foreground">System</span>
             </h1>
-            <span className="text-[11px] font-mono text-muted-foreground/50 bg-muted px-1.5 py-0.5 rounded">v0.1.0</span>
+            <span className="text-[11px] font-mono text-muted-foreground/50 bg-muted px-1.5 py-0.5 rounded">
+              v0.1.0
+            </span>
           </div>
           <button
             onClick={toggleTheme}
@@ -128,9 +209,16 @@ export default function Home() {
           <nav className="p-4 space-y-6">
             {sidebarGroups.map((group) => (
               <div key={group.label}>
-                <p className="text-[11px] uppercase tracking-widest font-mono text-muted-foreground/60 mb-2 px-2">
-                  {group.label}
-                </p>
+                <div className="flex items-center gap-2 mb-2 px-2">
+                  <p className="text-[11px] uppercase tracking-widest font-mono text-muted-foreground/60">
+                    {group.label}
+                  </p>
+                  {group.type === "examples" && (
+                    <span className="text-[9px] uppercase tracking-wider font-mono text-muted-foreground/40 bg-muted px-1.5 py-0.5 rounded">
+                      Preview
+                    </span>
+                  )}
+                </div>
                 <div className="space-y-0.5">
                   {group.items.map((item) => (
                     <button
@@ -159,24 +247,53 @@ export default function Home() {
 
         {/* Main content */}
         <main className="flex-1 min-w-0">
-          {/* Breadcrumb */}
-          <div className="border-b border-border/50 px-8 py-3">
-            <div className="flex items-center gap-2 text-[13px]">
-              <span className="text-muted-foreground/60">Docs</span>
+          {/* Breadcrumb + page header */}
+          <div className="border-b border-border/50 px-8 py-6">
+            <div className="flex items-center gap-2 text-[13px] mb-3">
+              <span className="text-muted-foreground/60">
+                {isExample ? "Examples" : "Docs"}
+              </span>
+              <span className="text-muted-foreground/40">/</span>
+              <span className="text-muted-foreground/60">{activeGroupLabel}</span>
               <span className="text-muted-foreground/40">/</span>
               <span className="text-foreground font-medium">{activeLabel}</span>
             </div>
+            <h2 className="text-xl font-medium tracking-tight">{activeLabel}</h2>
+            <p className="mt-1 text-sm text-muted-foreground max-w-2xl">
+              {activeDescription}
+            </p>
           </div>
 
-          <div
-            className={
-              fullWidthSections.has(activeSection)
-                ? "mx-auto max-w-5xl px-8 py-12"
-                : "mx-auto max-w-6xl px-8 py-12"
-            }
-          >
-            <ActiveComponent />
-          </div>
+          {isExample ? (
+            /* Example pages get a browser-frame preview wrapper */
+            <div className="px-8 py-10">
+              <div className="rounded-xl border border-border/50 overflow-hidden bg-card">
+                {/* Browser chrome */}
+                <div className="flex items-center gap-2 px-4 py-3 border-b border-border/50 bg-muted/30">
+                  <div className="flex items-center gap-1.5">
+                    <span className="size-2.5 rounded-full bg-muted-foreground/20" />
+                    <span className="size-2.5 rounded-full bg-muted-foreground/20" />
+                    <span className="size-2.5 rounded-full bg-muted-foreground/20" />
+                  </div>
+                  <div className="flex-1 flex justify-center">
+                    <div className="bg-background/60 rounded-md px-4 py-1 text-[11px] font-mono text-muted-foreground/50 border border-border/30 min-w-[200px] text-center">
+                      example.design-system.dev/{activeSection}
+                    </div>
+                  </div>
+                  <div className="w-[52px]" />
+                </div>
+                {/* Page content */}
+                <div className="p-8 lg:p-12 bg-background">
+                  <ActiveComponent />
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* Documentation pages render normally */
+            <div className="mx-auto max-w-6xl px-8 py-12">
+              <ActiveComponent />
+            </div>
+          )}
         </main>
       </div>
 
