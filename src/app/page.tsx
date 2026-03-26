@@ -17,6 +17,7 @@ import { FormsShowcase } from "@/components/showcase/forms";
 import { PatternsShowcase } from "@/components/showcase/patterns";
 import { InstallationShowcase } from "@/components/showcase/installation";
 import { EcommerceShowcase } from "@/components/showcase/ecommerce";
+import { StreamingShowcase } from "@/components/showcase/streaming";
 import { IconsShowcase } from "@/components/showcase/icons";
 import { OverviewShowcase } from "@/components/showcase/overview";
 
@@ -163,6 +164,12 @@ const sidebarGroups: SidebarGroup[] = [
         label: "E-commerce",
         component: EcommerceShowcase,
         description: "Product grid, detail page, and shopping cart for a modern storefront.",
+      },
+      {
+        id: "streaming",
+        label: "Streaming",
+        component: StreamingShowcase,
+        description: "Video streaming app with hero banner, content rows, player, and episode list.",
       },
     ],
   },
