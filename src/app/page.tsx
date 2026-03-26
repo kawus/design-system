@@ -8,6 +8,7 @@ import { OverlayShowcase } from "@/components/showcase/overlay";
 import { MarketingShowcase } from "@/components/showcase/marketing";
 import { ArticleShowcase } from "@/components/showcase/article";
 import { ContentShowcase } from "@/components/showcase/content";
+import { BlogPostShowcase } from "@/components/showcase/blog-post";
 
 const sections = [
   { id: "foundation", label: "Foundation", component: FoundationShowcase },
@@ -16,6 +17,7 @@ const sections = [
   { id: "overlay", label: "Overlay", component: OverlayShowcase },
   { id: "marketing", label: "Marketing", component: MarketingShowcase },
   { id: "article", label: "Article", component: ArticleShowcase },
+  { id: "blog-post", label: "Blog Post", component: BlogPostShowcase },
   { id: "content", label: "Content", component: ContentShowcase },
 ] as const;
 
@@ -79,7 +81,7 @@ export default function Home() {
       {/* Content */}
       <main className="flex-1">
         <div className={
-          activeSection === "article"
+          activeSection === "article" || activeSection === "blog-post"
             ? "mx-auto max-w-5xl px-6 py-12"
             : "mx-auto max-w-7xl px-6 py-12"
         }>
