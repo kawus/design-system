@@ -41,6 +41,12 @@ const sidebarGroups: SidebarGroup[] = [
         component: InstallationShowcase,
         description: "Add the design system to your project via the shadcn registry.",
       },
+    ],
+  },
+  {
+    label: "Foundation",
+    type: "docs",
+    items: [
       {
         id: "colors",
         label: "Colors",
