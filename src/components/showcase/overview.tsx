@@ -5,9 +5,6 @@ import {
   Type,
   Layers,
   Component,
-  Monitor,
-  Moon,
-  Sun,
   ArrowRight,
   Package,
   Sparkles,
@@ -163,43 +160,6 @@ export function OverviewShowcase({
             description="Install via shadcn CLI. Cherry-pick components, dependencies resolve automatically."
             onNavigate={nav("installation")}
           />
-        </div>
-      </section>
-
-      {/* Theme preview */}
-      <section>
-        <h2 className="text-xs uppercase tracking-widest text-muted-foreground font-mono mb-6">
-          Light & Dark
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div className="rounded-xl border border-border/50 p-8 bg-card flex flex-col items-center justify-center gap-4">
-            <Sun className="size-6 text-foreground" />
-            <div className="flex items-center gap-2">
-              <span className="size-5 rounded-md bg-background border border-border" />
-              <span className="size-5 rounded-md bg-foreground" />
-              <span className="size-5 rounded-md bg-muted" />
-              <span className="size-5 rounded-md bg-accent" />
-              <span className="size-5 rounded-md bg-primary" />
-              <span className="size-5 rounded-md bg-destructive" />
-            </div>
-            <p className="text-[13px] text-muted-foreground">
-              Clean, minimal, Vercel-like
-            </p>
-          </div>
-          <div className="rounded-xl border border-border/50 p-8 bg-card flex flex-col items-center justify-center gap-4">
-            <Moon className="size-6 text-foreground" />
-            <div className="flex items-center gap-2">
-              <span className="glow size-5 rounded-md bg-card border border-border" />
-              <span className="size-5 rounded-md bg-foreground" />
-              <span className="size-5 rounded-md bg-muted" />
-              <span className="glass size-5 rounded-md" />
-              <span className="size-5 rounded-md bg-primary" />
-              <span className="size-5 rounded-md bg-destructive" />
-            </div>
-            <p className="text-[13px] text-muted-foreground">
-              Cinematic, Linear-inspired
-            </p>
-          </div>
         </div>
       </section>
 
