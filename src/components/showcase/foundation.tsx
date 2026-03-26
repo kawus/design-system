@@ -13,22 +13,22 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ─── Resolve any CSS color (including oklch) to hex via canvas ─── */
+/* ─── Resolve any CSS color (including oklch) to #RRGGBB via canvas pixel ─── */
 function getComputedHex(el: HTMLElement): string {
   const color = getComputedStyle(el).backgroundColor;
-  // Use a canvas to force the browser to resolve any color format to rgba
-  const ctx = document.createElement("canvas").getContext("2d");
+  const canvas = document.createElement("canvas");
+  canvas.width = 1;
+  canvas.height = 1;
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
   if (!ctx) return color;
+  // Paint the color onto a 1x1 canvas — the browser resolves ANY format to sRGB
+  ctx.clearRect(0, 0, 1, 1);
   ctx.fillStyle = color;
-  // ctx.fillStyle is now always in #rrggbb or #rrggbbaa format
-  const resolved = ctx.fillStyle;
-  if (resolved.startsWith("#")) return resolved.toUpperCase();
-  // Fallback: parse rgb()/rgba() if the browser returned that
-  const match = resolved.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-  if (!match) return color;
+  ctx.fillRect(0, 0, 1, 1);
+  const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data;
   return (
     "#" +
-    [+match[1], +match[2], +match[3]]
+    [r, g, b]
       .map((v) => v.toString(16).padStart(2, "0"))
       .join("")
       .toUpperCase()
