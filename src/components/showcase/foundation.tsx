@@ -140,6 +140,65 @@ export function FoundationShowcase() {
 
       <Separator className="my-16" />
 
+      {/* ── TYPEFACE ── */}
+      <section>
+        <SectionTitle>Typeface</SectionTitle>
+        <div className="bg-card rounded-xl p-8 ring-1 ring-foreground/5 space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Sans */}
+            <div>
+              <p className="text-[11px] font-mono text-muted-foreground/60 mb-3">sans — headings & body</p>
+              <p className="text-3xl font-medium tracking-tight mb-2 font-sans">Geist Sans</p>
+              <p className="text-sm text-muted-foreground mb-4 font-sans">
+                ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />
+                abcdefghijklmnopqrstuvwxyz<br />
+                0123456789
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs bg-muted px-2 py-0.5 rounded font-mono">font-sans</span>
+                <span className="text-xs bg-muted px-2 py-0.5 rounded font-mono">--font-geist-sans</span>
+              </div>
+            </div>
+            {/* Mono */}
+            <div>
+              <p className="text-[11px] font-mono text-muted-foreground/60 mb-3">mono — code, labels & data</p>
+              <p className="text-3xl font-medium tracking-tight mb-2 font-mono">Geist Mono</p>
+              <p className="text-sm text-muted-foreground mb-4 font-mono">
+                ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />
+                abcdefghijklmnopqrstuvwxyz<br />
+                0123456789
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs bg-muted px-2 py-0.5 rounded font-mono">font-mono</span>
+                <span className="text-xs bg-muted px-2 py-0.5 rounded font-mono">--font-geist-mono</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Weight specimens */}
+          <div>
+            <p className="text-[11px] font-mono text-muted-foreground/60 mb-3">weights</p>
+            <div className="space-y-2">
+              {[
+                { weight: "font-normal", label: "400 — Regular", desc: "Body text, descriptions" },
+                { weight: "font-medium", label: "500 — Medium", desc: "Headings, emphasis, labels" },
+                { weight: "font-semibold", label: "600 — Semibold", desc: "Buttons, strong emphasis (use sparingly)" },
+              ].map((w) => (
+                <div key={w.label} className="flex items-baseline gap-4">
+                  <span className={cn("text-lg w-48 shrink-0", w.weight)}>
+                    The quick brown fox
+                  </span>
+                  <span className="text-xs font-mono text-muted-foreground/60">{w.label}</span>
+                  <span className="text-xs text-muted-foreground/40 hidden md:inline">— {w.desc}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Separator className="my-16" />
+
       {/* ── TYPOGRAPHY SCALE ── */}
       <section>
         <SectionTitle>Typography Scale</SectionTitle>
