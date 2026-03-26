@@ -205,16 +205,12 @@ function Section({
 function SliderSection() {
   const [singleValue, setSingleValue] = React.useState<readonly number[]>([40])
   const [rangeValue, setRangeValue] = React.useState<readonly number[]>([25, 75])
-  const [stepValue, setStepValue] = React.useState<readonly number[]>([50])
 
   const handleSingle = React.useCallback((value: number | readonly number[]) => {
     setSingleValue(Array.isArray(value) ? value : [value])
   }, [])
   const handleRange = React.useCallback((value: number | readonly number[]) => {
     setRangeValue(Array.isArray(value) ? value : [value])
-  }, [])
-  const handleStep = React.useCallback((value: number | readonly number[]) => {
-    setStepValue(Array.isArray(value) ? value : [value])
   }, [])
 
   return (
@@ -243,36 +239,6 @@ function SliderSection() {
             <Slider defaultValue={[25, 75]} onValueChange={handleRange} />
           </div>
         </div>
-
-        <Separator />
-
-        <div>
-          <p className="text-xs font-mono text-muted-foreground/60 mb-4">with step marks</p>
-          <div className="max-w-sm space-y-3">
-            <div className="flex items-center justify-between">
-              <Label className="text-[15px] text-muted-foreground">Quality</Label>
-              <span className="text-sm font-mono text-muted-foreground">{stepValue[0]}%</span>
-            </div>
-            <Slider defaultValue={[50]} step={25} onValueChange={handleStep} />
-            <div className="flex justify-between text-xs text-muted-foreground/50 font-mono">
-              <span>0</span>
-              <span>25</span>
-              <span>50</span>
-              <span>75</span>
-              <span>100</span>
-            </div>
-          </div>
-        </div>
-
-        <Separator />
-
-        <div>
-          <p className="text-xs font-mono text-muted-foreground/60 mb-4">disabled</p>
-          <div className="max-w-sm space-y-3">
-            <Label className="text-[15px] text-muted-foreground">Brightness</Label>
-            <Slider defaultValue={[60]} disabled />
-          </div>
-        </div>
       </div>
     </Section>
   )
@@ -282,55 +248,50 @@ function SliderSection() {
 /*  Calendar Section                                                   */
 /* ------------------------------------------------------------------ */
 
-function CalendarSection() {
-  const [date, setDate] = React.useState<Date | undefined>(new Date(2026, 2, 26))
-
-  return (
-    <Section title="Calendar" description="Inline date selection with day-level granularity.">
-      <div className="flex justify-center">
-        <Calendar
-          mode="single"
-          selected={date}
-          onSelect={setDate}
-        />
-      </div>
-    </Section>
-  )
-}
-
-/* ------------------------------------------------------------------ */
-/*  Date Picker Section                                                */
-/* ------------------------------------------------------------------ */
-
-function DatePickerSection() {
-  const [date, setDate] = React.useState<Date | undefined>(new Date(2026, 2, 26))
+function DateSelectionSection() {
+  const [calendarDate, setCalendarDate] = React.useState<Date | undefined>(new Date(2026, 2, 26))
+  const [pickerDate, setPickerDate] = React.useState<Date | undefined>(new Date(2026, 2, 26))
   const [open, setOpen] = React.useState(false)
 
   return (
-    <Section title="Date Picker" description="Calendar in a popover, triggered by a button showing the formatted date.">
-      <div className="max-w-xs">
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger
-            render={
-              <Button variant="outline" className={cn("w-full justify-start text-left font-normal gap-2", !date && "text-muted-foreground")}>
-                <CalendarIcon className="size-4" />
-                {date
-                  ? date.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
-                  : "Pick a date"}
-              </Button>
-            }
+    <Section title="Date Selection" description="Inline calendar and popover date picker for selecting dates.">
+      <div className="grid gap-10 sm:grid-cols-2 items-start">
+        <div>
+          <p className="text-xs font-mono text-muted-foreground/60 mb-4">inline calendar</p>
+          <Calendar
+            mode="single"
+            selected={calendarDate}
+            onSelect={setCalendarDate}
           />
-          <PopoverContent className="w-auto p-0" align="start">
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={(d) => {
-                setDate(d)
-                setOpen(false)
-              }}
-            />
-          </PopoverContent>
-        </Popover>
+        </div>
+
+        <div>
+          <p className="text-xs font-mono text-muted-foreground/60 mb-4">date picker popover</p>
+          <div className="max-w-xs">
+            <Popover open={open} onOpenChange={setOpen}>
+              <PopoverTrigger
+                render={
+                  <Button variant="outline" className={cn("w-full justify-start text-left font-normal gap-2", !pickerDate && "text-muted-foreground")}>
+                    <CalendarIcon className="size-4" />
+                    {pickerDate
+                      ? pickerDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
+                      : "Pick a date"}
+                  </Button>
+                }
+              />
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={pickerDate}
+                  onSelect={(d) => {
+                    setPickerDate(d)
+                    setOpen(false)
+                  }}
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
+        </div>
       </div>
     </Section>
   )
@@ -379,22 +340,6 @@ function ToggleGroupSection() {
           </ToggleGroup>
         </div>
 
-        <Separator />
-
-        <div>
-          <p className="text-xs font-mono text-muted-foreground/60 mb-4">outline variant</p>
-          <ToggleGroup variant="outline" defaultValue={["center"]}>
-            <ToggleGroupItem value="left" aria-label="Align left">
-              <AlignLeftIcon className="size-4" />
-            </ToggleGroupItem>
-            <ToggleGroupItem value="center" aria-label="Align center">
-              <AlignCenterIcon className="size-4" />
-            </ToggleGroupItem>
-            <ToggleGroupItem value="right" aria-label="Align right">
-              <AlignRightIcon className="size-4" />
-            </ToggleGroupItem>
-          </ToggleGroup>
-        </div>
       </div>
     </Section>
   )
@@ -465,10 +410,10 @@ function ComboboxSection() {
 /*  Login Form Section                                                 */
 /* ------------------------------------------------------------------ */
 
-function LoginFormSection() {
+function FormPatternsSection() {
   return (
-    <Section title="Login Form" description="A complete authentication form with email, password, and remember-me.">
-      <div className="max-w-sm mx-auto">
+    <Section title="Form Patterns" description="Complete form examples for authentication and settings.">
+      <div className="grid gap-8 lg:grid-cols-2 items-start">
         <Card>
           <CardHeader>
             <CardTitle>Sign in</CardTitle>
@@ -499,19 +444,7 @@ function LoginFormSection() {
             </form>
           </CardContent>
         </Card>
-      </div>
-    </Section>
-  )
-}
 
-/* ------------------------------------------------------------------ */
-/*  Settings Form Section                                              */
-/* ------------------------------------------------------------------ */
-
-function SettingsFormSection() {
-  return (
-    <Section title="Settings Form" description="Profile and notification preferences with mixed input types.">
-      <div className="max-w-lg mx-auto">
         <Card>
           <CardHeader>
             <CardTitle>Account settings</CardTitle>
@@ -586,7 +519,7 @@ function SettingsFormSection() {
 function InputGroupsSection() {
   return (
     <Section title="Input Groups" description="Combined input patterns with icons, buttons, and select prefixes.">
-      <div className="space-y-10 max-w-md">
+      <div className="grid gap-6 sm:grid-cols-3">
         <div>
           <p className="text-xs font-mono text-muted-foreground/60 mb-4">search with icon</p>
           <InputGroup>
@@ -596,8 +529,6 @@ function InputGroupsSection() {
             <InputGroupInput placeholder="Search..." />
           </InputGroup>
         </div>
-
-        <Separator />
 
         <div>
           <p className="text-xs font-mono text-muted-foreground/60 mb-4">email subscribe</p>
@@ -611,8 +542,6 @@ function InputGroupsSection() {
             </InputGroupAddon>
           </InputGroup>
         </div>
-
-        <Separator />
 
         <div>
           <p className="text-xs font-mono text-muted-foreground/60 mb-4">phone with country code</p>
@@ -644,13 +573,20 @@ function InputGroupsSection() {
 export function FormsShowcase() {
   return (
     <div className="space-y-0">
+      <div className="mb-16">
+        <h2 className="text-lg font-medium tracking-tight mb-2">Forms</h2>
+        <p className="text-sm text-muted-foreground max-w-2xl">Sliders, date pickers, toggle groups, and complete form patterns.</p>
+      </div>
       <SliderSection />
-      <CalendarSection />
-      <DatePickerSection />
+      <Separator className="my-16" />
+      <DateSelectionSection />
+      <Separator className="my-16" />
       <ToggleGroupSection />
+      <Separator className="my-16" />
       <ComboboxSection />
-      <LoginFormSection />
-      <SettingsFormSection />
+      <Separator className="my-16" />
+      <FormPatternsSection />
+      <Separator className="my-16" />
       <InputGroupsSection />
     </div>
   )

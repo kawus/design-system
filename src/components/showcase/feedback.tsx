@@ -184,6 +184,11 @@ export function FeedbackShowcase() {
 
   return (
     <div className="space-y-0">
+      <div className="mb-16">
+        <h2 className="text-lg font-medium tracking-tight mb-2">Feedback</h2>
+        <p className="text-sm text-muted-foreground max-w-2xl">Alerts, progress indicators, loading states, toasts, and confirmation dialogs.</p>
+      </div>
+
       {/* ---------------------------------------------------------- */}
       {/*  ALERTS                                                    */}
       {/* ---------------------------------------------------------- */}
@@ -215,18 +220,10 @@ export function FeedbackShowcase() {
               Your changes are now live. It may take a few minutes for the CDN to propagate.
             </AlertDescription>
           </Alert>
-
-          <Alert className="text-amber-600 dark:text-amber-400">
-            <TriangleAlertIcon className="size-4" />
-            <AlertTitle>API rate limit approaching</AlertTitle>
-            <AlertDescription>
-              You have used 85% of your API quota for this billing period.
-            </AlertDescription>
-          </Alert>
         </div>
       </Section>
 
-      <Separator />
+      <Separator className="my-16" />
 
       {/* ---------------------------------------------------------- */}
       {/*  PROGRESS                                                  */}
@@ -235,28 +232,23 @@ export function FeedbackShowcase() {
         title="Progress"
         description="Visual indicators for task completion and loading states."
       >
-        <div className="space-y-6">
-          <div className="space-y-4">
-            {[0, 25, 50, 75, 100].map((val) => (
-              <Progress key={val} value={val}>
-                <ProgressLabel className="text-[15px] text-muted-foreground">
-                  {val === 0
-                    ? "Not started"
-                    : val === 100
-                    ? "Complete"
-                    : "In progress"}
-                </ProgressLabel>
-                <ProgressValue className="text-sm text-muted-foreground">
-                  {(formattedValue) => formattedValue}
-                </ProgressValue>
-              </Progress>
-            ))}
+        <div className="space-y-10">
+          <div>
+            <p className="text-xs font-mono text-muted-foreground/60 mb-4">static</p>
+            <Progress value={65}>
+              <ProgressLabel className="text-[15px] text-muted-foreground">
+                In progress
+              </ProgressLabel>
+              <ProgressValue className="text-sm text-muted-foreground">
+                {(formattedValue) => formattedValue}
+              </ProgressValue>
+            </Progress>
           </div>
 
           <Separator />
 
           <div>
-            <p className="text-sm text-muted-foreground mb-3">Animated progress</p>
+            <p className="text-xs font-mono text-muted-foreground/60 mb-4">animated</p>
             <Progress value={animatedProgress}>
               <ProgressLabel className="text-[15px] text-muted-foreground">
                 Uploading files...
@@ -269,7 +261,7 @@ export function FeedbackShowcase() {
         </div>
       </Section>
 
-      <Separator />
+      <Separator className="my-16" />
 
       {/* ---------------------------------------------------------- */}
       {/*  SKELETON                                                  */}
@@ -292,16 +284,6 @@ export function FeedbackShowcase() {
             </div>
           </div>
 
-          {/* Profile skeleton */}
-          <div>
-            <p className="text-xs text-muted-foreground font-mono mb-3">Profile</p>
-            <div className="flex flex-col items-center gap-3">
-              <Skeleton className="size-16 rounded-full" />
-              <Skeleton className="h-4 w-28" />
-              <Skeleton className="h-3 w-40" />
-            </div>
-          </div>
-
           {/* Table row skeleton */}
           <div>
             <p className="text-xs text-muted-foreground font-mono mb-3">Table row</p>
@@ -316,22 +298,10 @@ export function FeedbackShowcase() {
               ))}
             </div>
           </div>
-
-          {/* Article skeleton */}
-          <div>
-            <p className="text-xs text-muted-foreground font-mono mb-3">Article</p>
-            <div className="space-y-3">
-              <Skeleton className="h-5 w-3/4" />
-              <Skeleton className="h-3 w-full" />
-              <Skeleton className="h-3 w-full" />
-              <Skeleton className="h-3 w-2/3" />
-              <Skeleton className="h-32 w-full rounded-lg" />
-            </div>
-          </div>
         </div>
       </Section>
 
-      <Separator />
+      <Separator className="my-16" />
 
       {/* ---------------------------------------------------------- */}
       {/*  TOAST (SONNER)                                            */}
@@ -369,18 +339,6 @@ export function FeedbackShowcase() {
             variant="outline"
             size="sm"
             onClick={() =>
-              toast("File uploaded", {
-                description: "report-q4.pdf was added to your documents.",
-              })
-            }
-          >
-            With description
-          </Button>
-
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() =>
               toast("Meeting scheduled", {
                 action: {
                   label: "Undo",
@@ -391,27 +349,10 @@ export function FeedbackShowcase() {
           >
             With action
           </Button>
-
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              toast.promise(
-                new Promise((resolve) => setTimeout(resolve, 2000)),
-                {
-                  loading: "Deploying to production...",
-                  success: "Deployed successfully",
-                  error: "Deployment failed",
-                }
-              )
-            }}
-          >
-            Promise
-          </Button>
         </div>
       </Section>
 
-      <Separator />
+      <Separator className="my-16" />
 
       {/* ---------------------------------------------------------- */}
       {/*  ALERT DIALOG                                              */}
@@ -473,7 +414,7 @@ export function FeedbackShowcase() {
         </div>
       </Section>
 
-      <Separator />
+      <Separator className="my-16" />
 
       {/* ---------------------------------------------------------- */}
       {/*  HOVER CARD                                                */}
