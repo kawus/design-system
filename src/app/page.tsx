@@ -203,8 +203,8 @@ export default function Home() {
               </svg>
             </button>
             <h1 className="text-sm font-semibold tracking-tight">
-              <span className="text-foreground">Design</span>
-              <span className="text-muted-foreground">System</span>
+              <span className="text-foreground">Next</span>
+              <span className="text-muted-foreground">DesignSystem</span>
             </h1>
             <span className="text-[11px] font-mono text-muted-foreground/50 bg-muted px-1.5 py-0.5 rounded">
               v0.1.0
