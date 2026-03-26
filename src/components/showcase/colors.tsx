@@ -1,25 +1,22 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 
-/* ─── Read the raw CSS variable value (e.g. "oklch(0.13 0 0)") ─── */
+/* ─── Read the raw CSS variable value ─── */
 function getOklchValue(varName: string): string {
-  const raw = getComputedStyle(document.documentElement)
+  return getComputedStyle(document.documentElement)
     .getPropertyValue(varName)
-    .trim();
-  return raw || "–";
+    .trim() || "–";
 }
 
-/* ─── Color swatch with hover oklch + click to copy ─── */
+/* ─── Color swatch — value shown below, click to copy ─── */
 function Swatch({ name, cssVar }: { name: string; cssVar: string }) {
-  const swatchRef = useRef<HTMLDivElement>(null);
-  const [value, setValue] = useState<string | null>(null);
+  const [value, setValue] = useState<string>("");
   const [copied, setCopied] = useState(false);
 
-  const handleMouseEnter = useCallback(() => {
-    const raw = getOklchValue(name);
-    setValue(raw);
+  useEffect(() => {
+    setValue(getOklchValue(name));
   }, [name]);
 
   const handleClick = useCallback(() => {
@@ -30,24 +27,22 @@ function Swatch({ name, cssVar }: { name: string; cssVar: string }) {
   }, [name]);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div
+      className="flex flex-col gap-2 cursor-pointer group"
+      onClick={handleClick}
+    >
       <div
-        ref={swatchRef}
         className={cn(
-          "h-16 w-full rounded-lg border border-border relative cursor-pointer group transition-shadow hover:ring-2 hover:ring-ring/30",
+          "h-16 w-full rounded-lg border border-border transition-shadow group-hover:ring-2 group-hover:ring-ring/30",
           cssVar
         )}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={() => { setValue(null); setCopied(false); }}
-        onClick={handleClick}
-      >
-        <div className="absolute inset-0 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
-          <span className="font-mono text-[10px] text-white font-medium">
-            {copied ? "Copied!" : value ?? "…"}
-          </span>
-        </div>
+      />
+      <div className="flex flex-col gap-0.5">
+        <span className="font-mono text-xs text-muted-foreground">{name}</span>
+        <span className="font-mono text-[11px] text-muted-foreground/50">
+          {copied ? "Copied!" : value}
+        </span>
       </div>
-      <span className="font-mono text-xs text-muted-foreground">{name}</span>
     </div>
   );
 }
