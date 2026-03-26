@@ -384,7 +384,7 @@ export function BlogPostShowcase() {
           </span>
         </div>
 
-        <h1 className="text-2xl md:text-3xl font-medium tracking-tight leading-snug text-muted-foreground mb-6">
+        <h1 className="text-4xl md:text-5xl font-medium tracking-tight leading-snug mb-6">
           Building a design system that doesn&apos;t fight you
         </h1>
 

@@ -146,7 +146,7 @@ export function MarketingShowcase() {
           <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground/60 mb-3">
             Capabilities
           </p>
-          <h2 className="text-2xl font-medium tracking-tight text-muted-foreground">
+          <h2 className="text-2xl font-medium tracking-tight">
             Everything you need to ship
           </h2>
         </div>
@@ -175,7 +175,7 @@ export function MarketingShowcase() {
           <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground/60 mb-3">
             Platform
           </p>
-          <h2 className="text-2xl font-medium tracking-tight text-muted-foreground">
+          <h2 className="text-2xl font-medium tracking-tight">
             Designed for scale
           </h2>
         </div>
@@ -284,7 +284,7 @@ export function MarketingShowcase() {
       {/* ═══ CTA SECTION ═══ */}
       <section className="flex flex-col items-center text-center py-16">
         <div className="flex flex-col items-center gap-4 max-w-md mx-auto">
-          <h2 className="text-2xl font-medium tracking-tight text-muted-foreground">
+          <h2 className="text-2xl font-medium tracking-tight">
             Start building today
           </h2>
           <p className="text-[15px] text-muted-foreground/70">

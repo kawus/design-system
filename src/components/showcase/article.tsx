@@ -52,7 +52,7 @@ export function ArticleShowcase() {
 
       {/* ── DATA CALLOUT ── */}
       <section className="max-w-2xl mx-auto px-6">
-        <p className="text-xl md:text-2xl font-medium tracking-tight leading-snug text-muted-foreground">
+        <p className="text-xl md:text-2xl font-medium tracking-tight leading-snug">
           Teams using a shared component system ship{" "}
           <span className="text-foreground">34% faster</span> and report{" "}
           <span className="text-foreground">68% fewer</span> visual inconsistencies
@@ -171,7 +171,7 @@ export function ArticleShowcase() {
 
       {/* ── COMING SOON ── */}
       <section className="max-w-2xl mx-auto px-6 space-y-10">
-        <h2 className="text-xl font-medium tracking-tight text-muted-foreground">
+        <h2 className="text-xl font-medium tracking-tight">
           Coming soon:
         </h2>
 
