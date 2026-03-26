@@ -133,6 +133,11 @@ function TypeRow({
 export function FoundationShowcase() {
   return (
     <div className="space-y-0">
+      <div className="mb-16">
+        <h2 className="text-lg font-medium tracking-tight mb-2">Foundation</h2>
+        <p className="text-sm text-muted-foreground max-w-2xl">Design tokens, typography, spacing, and visual effects that form the base of the system.</p>
+      </div>
+
       {/* ── COLOR PALETTE ── */}
       <section>
         <SectionTitle>Color Palette</SectionTitle>
@@ -143,25 +148,15 @@ export function FoundationShowcase() {
               { name: "--background", cssVar: "bg-background" },
               { name: "--foreground", cssVar: "bg-foreground" },
               { name: "--card", cssVar: "bg-card" },
-              { name: "--card-foreground", cssVar: "bg-card-foreground" },
-              { name: "--popover", cssVar: "bg-popover" },
-              { name: "--popover-foreground", cssVar: "bg-popover-foreground" },
             ]}
           />
           <ColorGroup
             label="Interactive"
             swatches={[
               { name: "--primary", cssVar: "bg-primary" },
-              { name: "--primary-foreground", cssVar: "bg-primary-foreground" },
               { name: "--secondary", cssVar: "bg-secondary" },
-              {
-                name: "--secondary-foreground",
-                cssVar: "bg-secondary-foreground",
-              },
-              { name: "--accent", cssVar: "bg-accent" },
-              { name: "--accent-foreground", cssVar: "bg-accent-foreground" },
               { name: "--muted", cssVar: "bg-muted" },
-              { name: "--muted-foreground", cssVar: "bg-muted-foreground" },
+              { name: "--accent", cssVar: "bg-accent" },
               { name: "--destructive", cssVar: "bg-destructive" },
             ]}
           />
@@ -310,7 +305,7 @@ export function FoundationShowcase() {
       <section>
         <SectionTitle>Spacing Scale</SectionTitle>
         <div className="space-y-3">
-          {[1, 2, 3, 4, 6, 8, 12, 16, 20, 24, 32, 48, 64].map((value) => {
+          {[1, 2, 4, 6, 8, 12, 16, 24].map((value) => {
             const px = value * 4;
             return (
               <div key={value} className="flex items-center gap-4">

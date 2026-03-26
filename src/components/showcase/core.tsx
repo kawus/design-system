@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
 import {
   Select,
   SelectContent,
@@ -51,22 +50,6 @@ function ArrowRightIcon({ className }: { className?: string }) {
       className={className}
     >
       <path d="M3 8h10M9 4l4 4-4 4" />
-    </svg>
-  )
-}
-
-function SpinnerIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      className={className}
-    >
-      <path d="M8 2a6 6 0 1 0 6 6" />
     </svg>
   )
 }
@@ -155,15 +138,20 @@ function Section({
 export function CoreShowcase() {
   return (
     <div className="space-y-0">
+      <div className="mb-16">
+        <h2 className="text-lg font-medium tracking-tight mb-2">Core Components</h2>
+        <p className="text-sm text-muted-foreground max-w-2xl">Buttons, badges, inputs, and form controls — the building blocks of every interface.</p>
+      </div>
+
       {/* ---------------------------------------------------------- */}
       {/*  BUTTONS                                                    */}
       {/* ---------------------------------------------------------- */}
       <Section
         title="Buttons"
-        description="Primary actions, secondary options, destructive confirmations. Every variant and size."
+        description="Primary actions, secondary options, destructive confirmations."
       >
         <div className="space-y-10">
-          {/* --- Variants with text --- */}
+          {/* --- Variants --- */}
           <div>
             <p className="text-xs font-mono text-muted-foreground/60 mb-4">
               variants
@@ -184,7 +172,6 @@ export function CoreShowcase() {
               sizes
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              <Button size="xs">Extra Small</Button>
               <Button size="sm">Small</Button>
               <Button size="default">Default</Button>
               <Button size="lg">Large</Button>
@@ -204,63 +191,6 @@ export function CoreShowcase() {
               <Button variant="outline">
                 Continue
                 <ArrowRightIcon data-icon="inline-end" />
-              </Button>
-              <Button variant="secondary">
-                <PlusIcon data-icon="inline-start" />
-                Add item
-              </Button>
-            </div>
-          </div>
-
-          {/* --- Icon-only sizes --- */}
-          <div>
-            <p className="text-xs font-mono text-muted-foreground/60 mb-4">
-              icon only
-            </p>
-            <div className="flex flex-wrap items-center gap-3">
-              <Button size="icon-xs" variant="outline">
-                <PlusIcon />
-              </Button>
-              <Button size="icon-sm" variant="outline">
-                <PlusIcon />
-              </Button>
-              <Button size="icon" variant="outline">
-                <PlusIcon />
-              </Button>
-              <Button size="icon-lg" variant="outline">
-                <PlusIcon />
-              </Button>
-            </div>
-          </div>
-
-          {/* --- Glow effect --- */}
-          <div>
-            <p className="text-xs font-mono text-muted-foreground/60 mb-4">
-              glow
-            </p>
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="glow rounded-lg">
-                <Button>
-                  <PlusIcon data-icon="inline-start" />
-                  New project
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          {/* --- Loading state --- */}
-          <div>
-            <p className="text-xs font-mono text-muted-foreground/60 mb-4">
-              loading
-            </p>
-            <div className="flex flex-wrap items-center gap-3">
-              <Button disabled>
-                <SpinnerIcon className="size-4 animate-spin" />
-                Processing...
-              </Button>
-              <Button variant="outline" disabled>
-                <SpinnerIcon className="size-4 animate-spin" />
-                Saving
               </Button>
             </div>
           </div>
@@ -351,20 +281,6 @@ export function CoreShowcase() {
             </div>
           </div>
 
-          {/* With description */}
-          <div>
-            <p className="text-xs font-mono text-muted-foreground/60 mb-3">
-              with description
-            </p>
-            <div className="grid gap-2">
-              <Label htmlFor="input-desc">Username</Label>
-              <Input id="input-desc" placeholder="@handle" />
-              <p className="text-xs text-muted-foreground">
-                This is your public display name.
-              </p>
-            </div>
-          </div>
-
           {/* Disabled */}
           <div>
             <p className="text-xs font-mono text-muted-foreground/60 mb-3">
@@ -391,19 +307,6 @@ export function CoreShowcase() {
             </div>
           </div>
 
-          {/* Textarea */}
-          <div>
-            <p className="text-xs font-mono text-muted-foreground/60 mb-3">
-              textarea
-            </p>
-            <div className="grid gap-2">
-              <Label htmlFor="textarea-demo">Message</Label>
-              <Textarea
-                id="textarea-demo"
-                placeholder="Type your message here..."
-              />
-            </div>
-          </div>
         </div>
       </Section>
 
@@ -509,13 +412,13 @@ export function CoreShowcase() {
         title="Switch & Toggle"
         description="Binary controls and pressable toggle buttons."
       >
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="flex flex-wrap items-start gap-12">
           {/* Switch */}
           <div>
             <p className="text-xs font-mono text-muted-foreground/60 mb-4">
               switch
             </p>
-            <div className="space-y-4">
+            <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <Switch id="switch-1" defaultChecked />
                 <Label htmlFor="switch-1" className="font-normal">
@@ -528,12 +431,6 @@ export function CoreShowcase() {
                   Airplane mode
                 </Label>
               </div>
-              <div className="flex items-center gap-3">
-                <Switch id="switch-3" size="sm" defaultChecked />
-                <Label htmlFor="switch-3" className="font-normal text-xs">
-                  Small variant
-                </Label>
-              </div>
             </div>
           </div>
 
@@ -542,29 +439,16 @@ export function CoreShowcase() {
             <p className="text-xs font-mono text-muted-foreground/60 mb-4">
               toggle
             </p>
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <Toggle defaultPressed aria-label="Bold">
-                  <BoldIcon />
-                </Toggle>
-                <Toggle aria-label="Italic">
-                  <ItalicIcon />
-                </Toggle>
-                <Toggle aria-label="Underline">
-                  <UnderlineIcon />
-                </Toggle>
-              </div>
-              <div className="flex items-center gap-2">
-                <Toggle variant="outline" aria-label="Bold">
-                  <BoldIcon />
-                </Toggle>
-                <Toggle variant="outline" aria-label="Italic">
-                  <ItalicIcon />
-                </Toggle>
-                <Toggle variant="outline" aria-label="Underline">
-                  <UnderlineIcon />
-                </Toggle>
-              </div>
+            <div className="flex items-center gap-2">
+              <Toggle defaultPressed aria-label="Bold">
+                <BoldIcon />
+              </Toggle>
+              <Toggle aria-label="Italic">
+                <ItalicIcon />
+              </Toggle>
+              <Toggle aria-label="Underline">
+                <UnderlineIcon />
+              </Toggle>
             </div>
           </div>
         </div>
