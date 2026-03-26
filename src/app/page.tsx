@@ -6,6 +6,8 @@ import { CoreShowcase } from "@/components/showcase/core";
 import { DataNavShowcase } from "@/components/showcase/data-nav";
 import { OverlayShowcase } from "@/components/showcase/overlay";
 import { MarketingShowcase } from "@/components/showcase/marketing";
+import { ArticleShowcase } from "@/components/showcase/article";
+import { ContentShowcase } from "@/components/showcase/content";
 
 const sections = [
   { id: "foundation", label: "Foundation", component: FoundationShowcase },
@@ -13,6 +15,8 @@ const sections = [
   { id: "data-nav", label: "Data & Nav", component: DataNavShowcase },
   { id: "overlay", label: "Overlay", component: OverlayShowcase },
   { id: "marketing", label: "Marketing", component: MarketingShowcase },
+  { id: "article", label: "Article", component: ArticleShowcase },
+  { id: "content", label: "Content", component: ContentShowcase },
 ] as const;
 
 export default function Home() {
@@ -74,7 +78,11 @@ export default function Home() {
 
       {/* Content */}
       <main className="flex-1">
-        <div className="mx-auto max-w-7xl px-6 py-12">
+        <div className={
+          activeSection === "article"
+            ? "mx-auto max-w-5xl px-6 py-12"
+            : "mx-auto max-w-7xl px-6 py-12"
+        }>
           <ActiveComponent />
         </div>
       </main>
