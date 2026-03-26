@@ -27,6 +27,11 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 export function ContentShowcase() {
   return (
     <div className="space-y-0">
+      <div className="mb-16">
+        <h2 className="text-lg font-medium tracking-tight mb-2">Content</h2>
+        <p className="text-sm text-muted-foreground max-w-2xl">Prose, blockquotes, code blocks, lists, and content card patterns.</p>
+      </div>
+
       {/* ── PROSE ── */}
       <section>
         <SectionTitle>Prose</SectionTitle>
@@ -81,14 +86,7 @@ export function ContentShowcase() {
             </footer>
           </blockquote>
 
-          {/* Style 2: Pull quote */}
-          <div className="py-6">
-            <p className="text-xl font-medium tracking-tight leading-snug text-muted-foreground max-w-xl">
-              &ldquo;Ship the system, then let the system ship for you.&rdquo;
-            </p>
-          </div>
-
-          {/* Style 3: Card-style callout */}
+          {/* Style 2: Card-style callout */}
           <div className="glass gradient-border rounded-xl p-6">
             <div className="flex gap-3">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-chart-1 shrink-0 mt-0.5">
@@ -265,8 +263,6 @@ $ npm run build
               {[
                 { text: "Set up design tokens", done: true },
                 { text: "Build core components", done: true },
-                { text: "Create showcase gallery", done: true },
-                { text: "Add article page template", done: true },
                 { text: "Figma sync integration", done: false },
                 { text: "Theme studio editor", done: false },
               ].map((item, i) => (
@@ -352,15 +348,6 @@ $ npm run build
                     "Semantic token system with dark/light themes",
                     "Custom utilities: glass, glow, gradient-border, noise",
                     "Interactive showcase gallery",
-                  ],
-                },
-                {
-                  version: "v0.0.2",
-                  date: "Mar 20, 2026",
-                  changes: [
-                    "Replaced oklch neutral scale with refined values",
-                    "Added chart-1 through chart-5 tokens",
-                    "Fixed border opacity in dark mode",
                   ],
                 },
               ].map((release) => (

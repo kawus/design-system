@@ -182,12 +182,16 @@ function MapPinIcon({ className }: { className?: string }) {
 /*  Section wrapper                                                    */
 /* ------------------------------------------------------------------ */
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, description, children }: { title: string; description?: string; children: React.ReactNode }) {
   return (
     <section>
-      <h3 className="text-xs uppercase tracking-widest text-muted-foreground font-mono mb-6">
+      <h3 className="text-xs uppercase tracking-widest text-muted-foreground font-mono mb-2">
         {title}
       </h3>
+      {description && (
+        <p className="text-sm text-muted-foreground mb-8">{description}</p>
+      )}
+      {!description && <div className="mb-6" />}
       {children}
     </section>
   )
@@ -287,8 +291,6 @@ const activities = [
   { avatar: "EJ", name: "Elena Johansson", action: "merged PR", target: "#327 — Refactor auth middleware", time: "5h ago", color: "bg-violet-500" },
   { avatar: "TN", name: "Tomás Nguyen", action: "deployed to production", target: "v2.4.1", time: "8h ago", color: "bg-emerald-500" },
   { avatar: "AL", name: "Ava Liu", action: "assigned", target: "PERF-56: Query optimization", time: "yesterday", color: "bg-rose-500" },
-  { avatar: "DK", name: "Daniel Kim", action: "closed issue", target: "BUG-201: Memory leak in worker", time: "yesterday", color: "bg-slate-500" },
-  { avatar: "SC", name: "Sarah Chen", action: "opened PR", target: "#334 — Add rate limiting", time: "2 days ago", color: "bg-blue-500" },
 ]
 
 function ActivityFeed() {
@@ -644,10 +646,6 @@ const shortcuts = [
   { keys: ["⌘", "/"], label: "Command palette" },
   { keys: ["⌘", "B"], label: "Toggle sidebar" },
   { keys: ["⌘", "⇧", "P"], label: "Quick switch" },
-  { keys: ["⌘", "J"], label: "Jump to" },
-  { keys: ["⌘", "."], label: "Shortcuts" },
-  { keys: ["⌘", "⇧", "E"], label: "Explorer" },
-  { keys: ["⌘", "D"], label: "Dashboard" },
   { keys: ["Esc"], label: "Close / cancel" },
 ]
 
@@ -691,36 +689,55 @@ function CommandBar() {
 
 export function PatternsShowcase() {
   return (
-    <div className="space-y-16">
-      <Section title="Dashboard Header">
+    <div className="space-y-0">
+      <div className="mb-16">
+        <h2 className="text-lg font-medium tracking-tight mb-2">Patterns</h2>
+        <p className="text-sm text-muted-foreground max-w-2xl">Complete UI compositions built from the design system — dashboards, profiles, settings, and more.</p>
+      </div>
+
+      <Section title="Dashboard Header" description="Page header with breadcrumbs, title, actions, and filters.">
         <DashboardHeader />
       </Section>
 
-      <Section title="Stat Cards">
+      <Separator className="my-16" />
+
+      <Section title="Stat Cards" description="Metric cards with trend indicators for dashboard overviews.">
         <StatCards />
       </Section>
 
-      <Section title="Activity Feed">
+      <Separator className="my-16" />
+
+      <Section title="Activity Feed" description="Vertical timeline of user actions and system events.">
         <ActivityFeed />
       </Section>
 
-      <Section title="User Profile">
+      <Separator className="my-16" />
+
+      <Section title="User Profile" description="Profile card with avatar, bio, stats, and action buttons.">
         <UserProfileCard />
       </Section>
 
-      <Section title="Settings Layout">
+      <Separator className="my-16" />
+
+      <Section title="Settings Layout" description="Side navigation with content panel for app settings.">
         <SettingsLayout />
       </Section>
 
-      <Section title="Pricing Table">
+      <Separator className="my-16" />
+
+      <Section title="Pricing Table" description="Three-tier pricing comparison with feature checklists.">
         <PricingTable />
       </Section>
 
-      <Section title="Notifications">
+      <Separator className="my-16" />
+
+      <Section title="Notifications" description="Notification feed with unread indicators and actions.">
         <NotificationPanel />
       </Section>
 
-      <Section title="Keyboard Shortcuts">
+      <Separator className="my-16" />
+
+      <Section title="Keyboard Shortcuts" description="Keyboard shortcut reference grid.">
         <CommandBar />
       </Section>
     </div>
