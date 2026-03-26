@@ -12,6 +12,7 @@ const iconEntries: { name: string; component: LucideIcon }[] = Object.entries(
     ([key]) =>
       /^[A-Z]/.test(key) &&
       !key.startsWith("create") &&
+      !key.startsWith("Lucide") &&
       !key.endsWith("Icon") &&
       key !== "default"
   )
