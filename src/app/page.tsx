@@ -16,6 +16,7 @@ import { LayoutShowcase } from "@/components/showcase/layout";
 import { FormsShowcase } from "@/components/showcase/forms";
 import { PatternsShowcase } from "@/components/showcase/patterns";
 import { InstallationShowcase } from "@/components/showcase/installation";
+import { IconsShowcase } from "@/components/showcase/icons";
 
 type SectionItem = {
   id: string;
@@ -64,6 +65,12 @@ const sidebarGroups: SidebarGroup[] = [
         label: "Surfaces",
         component: SurfacesShowcase,
         description: "Spacing scale, border radius tokens, and visual effects — glow, glass, gradient borders, noise textures.",
+      },
+      {
+        id: "icons",
+        label: "Icons",
+        component: IconsShowcase,
+        description: "1,900+ icons from Lucide. Search, browse, and click to copy the import statement.",
       },
     ],
   },
