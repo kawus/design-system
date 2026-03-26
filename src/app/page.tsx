@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { FoundationShowcase } from "@/components/showcase/foundation";
+import { ColorsShowcase } from "@/components/showcase/colors";
+import { TypefaceShowcase } from "@/components/showcase/typeface";
+import { SurfacesShowcase } from "@/components/showcase/surfaces";
 import { CoreShowcase } from "@/components/showcase/core";
 import { DataNavShowcase } from "@/components/showcase/data-nav";
 import { OverlayShowcase } from "@/components/showcase/overlay";
@@ -40,10 +42,22 @@ const sidebarGroups: SidebarGroup[] = [
         description: "Add the design system to your project via the shadcn registry.",
       },
       {
-        id: "foundation",
-        label: "Tokens & Styles",
-        component: FoundationShowcase,
-        description: "Design tokens, typography, color palette, spacing scale, and visual effects.",
+        id: "colors",
+        label: "Colors",
+        component: ColorsShowcase,
+        description: "oklch color palette with base, interactive, border, chart, and custom tokens. Click any swatch to copy its hex value.",
+      },
+      {
+        id: "typeface",
+        label: "Typeface",
+        component: TypefaceShowcase,
+        description: "Geist Sans and Geist Mono typefaces, font weights, and the full typography scale from Display to Micro.",
+      },
+      {
+        id: "surfaces",
+        label: "Surfaces",
+        component: SurfacesShowcase,
+        description: "Spacing scale, border radius tokens, and visual effects — glow, glass, gradient borders, noise textures.",
       },
     ],
   },
@@ -147,7 +161,7 @@ export default function Home() {
   };
 
   const activeItem = allItems.find((s) => s.id === activeSection);
-  const ActiveComponent = activeItem?.component ?? InstallationShowcase;
+  const ActiveComponent = activeItem?.component ?? ColorsShowcase;
   const activeLabel = activeItem?.label ?? "Installation";
   const activeDescription = activeItem?.description ?? "";
   const isExample = getGroupType(activeSection) === "examples";
