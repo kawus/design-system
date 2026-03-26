@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "design-system",
-  "homepage": "https://design-system-kawus.vercel.app",
+  "homepage": "https://next-design-system-nu.vercel.app",
   "items": [
     {
       "name": "theme",
