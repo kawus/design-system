@@ -118,7 +118,7 @@ export function MarketingShowcase() {
             Introducing V2.0
           </Badge>
 
-          <h1 className="text-3xl md:text-4xl font-medium tracking-tight text-muted-foreground leading-snug">
+          <h1 className="text-4xl md:text-5xl font-medium tracking-tight leading-snug">
             Build products at the
             <br />
             speed of thought

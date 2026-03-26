@@ -23,7 +23,7 @@ export function ArticleShowcase() {
 
       {/* ── MAIN HEADLINE ── */}
       <section className="max-w-2xl mx-auto px-6 pb-16">
-        <h1 className="text-3xl md:text-4xl font-medium tracking-tight leading-snug text-muted-foreground">
+        <h1 className="text-4xl md:text-5xl font-medium tracking-tight leading-snug">
           Design systems are infrastructure.
         </h1>
       </section>
