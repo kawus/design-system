@@ -182,9 +182,9 @@ export default function Home() {
     sidebarGroups.find((g) => g.items.some((i) => i.id === activeSection))?.label ?? "";
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col h-screen overflow-hidden">
       {/* Top bar */}
-      <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
+      <header className="z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl shrink-0">
         <div className="flex items-center justify-between h-14 px-6">
           <div className="flex items-center gap-3">
             <button
@@ -222,7 +222,7 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="flex flex-1">
+      <div className="flex flex-1 overflow-hidden">
         {/* Mobile overlay */}
         {sidebarOpen && (
           <div
@@ -236,7 +236,7 @@ export default function Home() {
           className={`
             fixed top-14 bottom-0 z-40 w-64 border-r border-border/50 bg-background overflow-y-auto
             transition-transform duration-200 ease-in-out
-            lg:sticky lg:translate-x-0 lg:shrink-0
+            lg:relative lg:top-0 lg:translate-x-0 lg:shrink-0
             ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
           `}
         >
@@ -280,7 +280,7 @@ export default function Home() {
         </aside>
 
         {/* Main content */}
-        <main className="flex-1 min-w-0">
+        <main className="flex-1 min-w-0 overflow-y-auto">
           {/* Breadcrumb + page header */}
           <div className="border-b border-border/50 px-8 py-6">
             <div className="flex items-center gap-2 text-[13px] mb-3">
@@ -328,16 +328,16 @@ export default function Home() {
               <ActiveComponent />
             </div>
           )}
+
+          {/* Footer */}
+          <footer className="border-t border-border/50 py-6">
+            <div className="px-8 flex items-center justify-between text-[13px] text-muted-foreground">
+              <span>Built with Next.js, Tailwind CSS, and shadcn/ui</span>
+              <span className="font-mono text-xs">v0.1.0</span>
+            </div>
+          </footer>
         </main>
       </div>
-
-      {/* Footer */}
-      <footer className="border-t border-border/50 py-6">
-        <div className="px-8 flex items-center justify-between text-[13px] text-muted-foreground">
-          <span>Built with Next.js, Tailwind CSS, and shadcn/ui</span>
-          <span className="font-mono text-xs">v0.1.0</span>
-        </div>
-      </footer>
     </div>
   );
 }
