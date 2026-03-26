@@ -3,47 +3,31 @@
 import { useRef, useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 
-/* ─── Resolve any CSS color (including oklch) to #RRGGBB via canvas pixel ─── */
-function getComputedHex(el: HTMLElement): string {
-  const color = getComputedStyle(el).backgroundColor;
-  const canvas = document.createElement("canvas");
-  canvas.width = 1;
-  canvas.height = 1;
-  const ctx = canvas.getContext("2d", { willReadFrequently: true });
-  if (!ctx) return color;
-  ctx.clearRect(0, 0, 1, 1);
-  ctx.fillStyle = color;
-  ctx.fillRect(0, 0, 1, 1);
-  const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data;
-  return (
-    "#" +
-    [r, g, b]
-      .map((v) => v.toString(16).padStart(2, "0"))
-      .join("")
-      .toUpperCase()
-  );
+/* ─── Read the raw CSS variable value (e.g. "oklch(0.13 0 0)") ─── */
+function getOklchValue(varName: string): string {
+  const raw = getComputedStyle(document.documentElement)
+    .getPropertyValue(varName)
+    .trim();
+  return raw || "–";
 }
 
-/* ─── Color swatch with hover hex + click to copy ─── */
+/* ─── Color swatch with hover oklch + click to copy ─── */
 function Swatch({ name, cssVar }: { name: string; cssVar: string }) {
   const swatchRef = useRef<HTMLDivElement>(null);
-  const [hex, setHex] = useState<string | null>(null);
+  const [value, setValue] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const handleMouseEnter = useCallback(() => {
-    if (swatchRef.current) {
-      setHex(getComputedHex(swatchRef.current));
-    }
-  }, []);
+    const raw = getOklchValue(name);
+    setValue(raw);
+  }, [name]);
 
   const handleClick = useCallback(() => {
-    if (swatchRef.current) {
-      const value = getComputedHex(swatchRef.current);
-      navigator.clipboard.writeText(value);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    }
-  }, []);
+    const raw = getOklchValue(name);
+    navigator.clipboard.writeText(`oklch(${raw})`);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  }, [name]);
 
   return (
     <div className="flex flex-col gap-2">
@@ -54,12 +38,12 @@ function Swatch({ name, cssVar }: { name: string; cssVar: string }) {
           cssVar
         )}
         onMouseEnter={handleMouseEnter}
-        onMouseLeave={() => { setHex(null); setCopied(false); }}
+        onMouseLeave={() => { setValue(null); setCopied(false); }}
         onClick={handleClick}
       >
         <div className="absolute inset-0 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
-          <span className="font-mono text-[11px] text-white font-medium">
-            {copied ? "Copied!" : hex ?? "…"}
+          <span className="font-mono text-[10px] text-white font-medium">
+            {copied ? "Copied!" : value ?? "…"}
           </span>
         </div>
       </div>
