@@ -9,17 +9,27 @@ import { MarketingShowcase } from "@/components/showcase/marketing";
 import { ArticleShowcase } from "@/components/showcase/article";
 import { ContentShowcase } from "@/components/showcase/content";
 import { BlogPostShowcase } from "@/components/showcase/blog-post";
+import { FeedbackShowcase } from "@/components/showcase/feedback";
+import { LayoutShowcase } from "@/components/showcase/layout";
+import { FormsShowcase } from "@/components/showcase/forms";
+import { PatternsShowcase } from "@/components/showcase/patterns";
 
 const sections = [
   { id: "foundation", label: "Foundation", component: FoundationShowcase },
   { id: "core", label: "Core", component: CoreShowcase },
+  { id: "forms", label: "Forms", component: FormsShowcase },
   { id: "data-nav", label: "Data & Nav", component: DataNavShowcase },
+  { id: "feedback", label: "Feedback", component: FeedbackShowcase },
+  { id: "layout", label: "Layout", component: LayoutShowcase },
   { id: "overlay", label: "Overlay", component: OverlayShowcase },
+  { id: "patterns", label: "Patterns", component: PatternsShowcase },
   { id: "marketing", label: "Marketing", component: MarketingShowcase },
   { id: "article", label: "Article", component: ArticleShowcase },
   { id: "blog-post", label: "Blog Post", component: BlogPostShowcase },
   { id: "content", label: "Content", component: ContentShowcase },
 ] as const;
+
+const fullWidthSections = new Set(["article", "blog-post"]);
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<string>("foundation");
@@ -38,17 +48,17 @@ export default function Home() {
       {/* Top bar */}
       <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-6 flex items-center justify-between h-14">
-          <div className="flex items-center gap-6">
-            <h1 className="text-sm font-semibold tracking-tight">
-              <span className="text-foreground">Design</span>
-              <span className="text-muted-foreground">System</span>
-            </h1>
-            <nav className="flex items-center gap-1">
+          <h1 className="text-sm font-semibold tracking-tight shrink-0 mr-6">
+            <span className="text-foreground">Design</span>
+            <span className="text-muted-foreground">System</span>
+          </h1>
+          <nav className="flex-1 overflow-x-auto scrollbar-none">
+            <div className="flex items-center gap-1">
               {sections.map((section) => (
                 <button
                   key={section.id}
                   onClick={() => setActiveSection(section.id)}
-                  className={`px-3 py-1.5 text-[13px] rounded-md transition-colors ${
+                  className={`px-3 py-1.5 text-[13px] rounded-md transition-colors whitespace-nowrap shrink-0 ${
                     activeSection === section.id
                       ? "bg-accent text-foreground font-medium"
                       : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
@@ -57,11 +67,11 @@ export default function Home() {
                   {section.label}
                 </button>
               ))}
-            </nav>
-          </div>
+            </div>
+          </nav>
           <button
             onClick={toggleTheme}
-            className="flex items-center gap-2 px-3 py-1.5 text-[13px] text-muted-foreground hover:text-foreground rounded-md hover:bg-accent/50 transition-colors"
+            className="flex items-center gap-2 px-3 py-1.5 text-[13px] text-muted-foreground hover:text-foreground rounded-md hover:bg-accent/50 transition-colors shrink-0 ml-4"
           >
             {isDark ? (
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -81,7 +91,7 @@ export default function Home() {
       {/* Content */}
       <main className="flex-1">
         <div className={
-          activeSection === "article" || activeSection === "blog-post"
+          fullWidthSections.has(activeSection)
             ? "mx-auto max-w-5xl px-6 py-12"
             : "mx-auto max-w-7xl px-6 py-12"
         }>
