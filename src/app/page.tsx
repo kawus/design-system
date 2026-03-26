@@ -18,6 +18,7 @@ import { PatternsShowcase } from "@/components/showcase/patterns";
 import { InstallationShowcase } from "@/components/showcase/installation";
 import { EcommerceShowcase } from "@/components/showcase/ecommerce";
 import { StreamingShowcase } from "@/components/showcase/streaming";
+import { NewsShowcase } from "@/components/showcase/news";
 import { IconsShowcase } from "@/components/showcase/icons";
 import { OverviewShowcase } from "@/components/showcase/overview";
 
@@ -170,6 +171,12 @@ const sidebarGroups: SidebarGroup[] = [
         label: "Streaming",
         component: StreamingShowcase,
         description: "Video streaming app with hero banner, content rows, player, and episode list.",
+      },
+      {
+        id: "news",
+        label: "News",
+        component: NewsShowcase,
+        description: "News website with breaking bar, hero story, live updates, trending, opinion, and newsletter.",
       },
     ],
   },

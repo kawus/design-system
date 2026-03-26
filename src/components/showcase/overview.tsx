@@ -200,6 +200,11 @@ export function OverviewShowcase({
               title: "Streaming",
               desc: "Hero banner, content rows, video player, episodes",
             },
+            {
+              id: "news",
+              title: "News",
+              desc: "Breaking bar, live updates, trending, opinion",
+            },
           ].map((example) => (
             <button
               key={example.id}
