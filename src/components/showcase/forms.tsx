@@ -573,10 +573,6 @@ function InputGroupsSection() {
 export function FormsShowcase() {
   return (
     <div className="space-y-0">
-      <div className="mb-16">
-        <h2 className="text-lg font-medium tracking-tight mb-2">Forms</h2>
-        <p className="text-sm text-muted-foreground max-w-2xl">Sliders, date pickers, toggle groups, and complete form patterns.</p>
-      </div>
       <SliderSection />
       <Separator className="my-16" />
       <DateSelectionSection />

@@ -185,10 +185,6 @@ export function LayoutShowcase() {
 
   return (
     <div className="space-y-0">
-      <div className="mb-16">
-        <h2 className="text-lg font-medium tracking-tight mb-2">Layout</h2>
-        <p className="text-sm text-muted-foreground max-w-2xl">Accordion, collapsible sections, scroll areas, resizable panels, and navigation patterns.</p>
-      </div>
 
       {/* ---------------------------------------------------------- */}
       {/*  ACCORDION                                                  */}

@@ -133,10 +133,6 @@ function TypeRow({
 export function FoundationShowcase() {
   return (
     <div className="space-y-0">
-      <div className="mb-16">
-        <h2 className="text-lg font-medium tracking-tight mb-2">Foundation</h2>
-        <p className="text-sm text-muted-foreground max-w-2xl">Design tokens, typography, spacing, and visual effects that form the base of the system.</p>
-      </div>
 
       {/* ── COLOR PALETTE ── */}
       <section>

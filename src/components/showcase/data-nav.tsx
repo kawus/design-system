@@ -555,10 +555,6 @@ function NavigationSidebarShowcase() {
 export function DataNavShowcase() {
   return (
     <div>
-      <div className="mb-16">
-        <h2 className="text-lg font-medium tracking-tight mb-2">Data & Navigation</h2>
-        <p className="text-sm text-muted-foreground max-w-2xl">Tables, command palette, dropdown menus, tabs, and sidebar navigation.</p>
-      </div>
 
       <TableShowcase />
       <Separator className="my-16" />

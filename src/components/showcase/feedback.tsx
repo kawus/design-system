@@ -184,10 +184,6 @@ export function FeedbackShowcase() {
 
   return (
     <div className="space-y-0">
-      <div className="mb-16">
-        <h2 className="text-lg font-medium tracking-tight mb-2">Feedback</h2>
-        <p className="text-sm text-muted-foreground max-w-2xl">Alerts, progress indicators, loading states, toasts, and confirmation dialogs.</p>
-      </div>
 
       {/* ---------------------------------------------------------- */}
       {/*  ALERTS                                                    */}

@@ -27,10 +27,6 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 export function ContentShowcase() {
   return (
     <div className="space-y-0">
-      <div className="mb-16">
-        <h2 className="text-lg font-medium tracking-tight mb-2">Content</h2>
-        <p className="text-sm text-muted-foreground max-w-2xl">Prose, blockquotes, code blocks, lists, and content card patterns.</p>
-      </div>
 
       {/* ── PROSE ── */}
       <section>

@@ -192,10 +192,6 @@ function InfoIcon() {
 export function OverlayShowcase() {
   return (
     <div className="space-y-0">
-      <div className="mb-16">
-        <h2 className="text-lg font-medium tracking-tight mb-2">Overlay</h2>
-        <p className="text-sm text-muted-foreground max-w-2xl">Dialogs, sheets, popovers, tooltips, and notification patterns.</p>
-      </div>
 
       {/* ──────────────────── Dialog ──────────────────── */}
       <section>
