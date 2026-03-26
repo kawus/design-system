@@ -192,6 +192,11 @@ function InfoIcon() {
 export function OverlayShowcase() {
   return (
     <div className="space-y-0">
+      <div className="mb-16">
+        <h2 className="text-lg font-medium tracking-tight mb-2">Overlay</h2>
+        <p className="text-sm text-muted-foreground max-w-2xl">Dialogs, sheets, popovers, tooltips, and notification patterns.</p>
+      </div>
+
       {/* ──────────────────── Dialog ──────────────────── */}
       <section>
         <SectionTitle>Dialog</SectionTitle>
@@ -429,24 +434,6 @@ export function OverlayShowcase() {
 
               <Tooltip>
                 <TooltipTrigger render={<Button variant="outline" />}>
-                  Bottom
-                </TooltipTrigger>
-                <TooltipContent side="bottom">
-                  Tooltip on bottom
-                </TooltipContent>
-              </Tooltip>
-
-              <Tooltip>
-                <TooltipTrigger render={<Button variant="outline" />}>
-                  Left
-                </TooltipTrigger>
-                <TooltipContent side="left">
-                  Tooltip on left
-                </TooltipContent>
-              </Tooltip>
-
-              <Tooltip>
-                <TooltipTrigger render={<Button variant="outline" />}>
                   Right
                 </TooltipTrigger>
                 <TooltipContent side="right">
@@ -491,19 +478,6 @@ export function OverlayShowcase() {
                 <p className="text-sm font-medium">Failed to deploy</p>
                 <p className="text-sm text-muted-foreground mt-0.5">
                   Build failed at step 3 — check the logs for details.
-                </p>
-              </div>
-            </div>
-
-            {/* Info */}
-            <div className="bg-card rounded-lg p-4 ring-1 ring-foreground/5 flex items-start gap-3">
-              <span className="text-blue-500">
-                <InfoIcon />
-              </span>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium">New version available</p>
-                <p className="text-sm text-muted-foreground mt-0.5">
-                  v2.4.0 is ready. Review the changelog before upgrading.
                 </p>
               </div>
             </div>

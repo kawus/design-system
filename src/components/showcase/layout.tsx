@@ -185,6 +185,11 @@ export function LayoutShowcase() {
 
   return (
     <div className="space-y-0">
+      <div className="mb-16">
+        <h2 className="text-lg font-medium tracking-tight mb-2">Layout</h2>
+        <p className="text-sm text-muted-foreground max-w-2xl">Accordion, collapsible sections, scroll areas, resizable panels, and navigation patterns.</p>
+      </div>
+
       {/* ---------------------------------------------------------- */}
       {/*  ACCORDION                                                  */}
       {/* ---------------------------------------------------------- */}
@@ -228,30 +233,6 @@ export function LayoutShowcase() {
                   Yes. Every component is independently importable with no
                   side effects. Install only what you need — there are no
                   global providers required except for theming.
-                </p>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem>
-              <AccordionTrigger>
-                Are components accessible?
-              </AccordionTrigger>
-              <AccordionContent>
-                <p>
-                  All components follow WAI-ARIA patterns and support keyboard
-                  navigation. Focus management, screen reader announcements,
-                  and proper roles are handled automatically.
-                </p>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem>
-              <AccordionTrigger>
-                How do I report a bug or request a feature?
-              </AccordionTrigger>
-              <AccordionContent>
-                <p>
-                  Open an issue in the GitHub repository with a minimal
-                  reproduction. Feature requests should include a use case
-                  description and, ideally, a design mockup or reference.
                 </p>
               </AccordionContent>
             </AccordionItem>
@@ -493,14 +474,6 @@ export function LayoutShowcase() {
                   { title: "Branch merged", time: "4 hours ago", unread: false },
                   { title: "New team member joined", time: "5 hours ago", unread: false },
                   { title: "Sprint retrospective scheduled", time: "6 hours ago", unread: false },
-                  { title: "Security patch available", time: "8 hours ago", unread: false },
-                  { title: "API rate limit warning", time: "10 hours ago", unread: false },
-                  { title: "Database migration completed", time: "12 hours ago", unread: false },
-                  { title: "Weekly report generated", time: "1 day ago", unread: false },
-                  { title: "License renewal reminder", time: "1 day ago", unread: false },
-                  { title: "New release v2.4.0", time: "2 days ago", unread: false },
-                  { title: "Backup completed", time: "2 days ago", unread: false },
-                  { title: "Audit log exported", time: "3 days ago", unread: false },
                 ].map((item, i) => (
                   <div
                     key={i}
@@ -561,108 +534,38 @@ export function LayoutShowcase() {
         title="Resizable Panels"
         description="Draggable panel layouts for building flexible interfaces."
       >
-        <div className="space-y-8">
-          {/* Two-panel layout */}
-          <div>
-            <p className="text-sm font-medium text-foreground mb-3">
-              Two-panel layout
-            </p>
-            <div className="rounded-lg border border-border overflow-hidden">
-              <ResizablePanelGroup orientation="horizontal" className="min-h-48">
-                <ResizablePanel defaultSize={30} minSize={20}>
-                  <div className="p-4 h-full">
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground font-mono mb-3">
-                      Sidebar
-                    </p>
-                    <div className="space-y-1.5">
-                      {["Overview", "Components", "Tokens", "Icons", "Changelog"].map((item) => (
-                        <div
-                          key={item}
-                          className="rounded-md px-2.5 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors cursor-default"
-                        >
-                          {item}
-                        </div>
-                      ))}
+        <div className="rounded-lg border border-border overflow-hidden">
+          <ResizablePanelGroup orientation="horizontal" className="min-h-48">
+            <ResizablePanel defaultSize={30} minSize={20}>
+              <div className="p-4 h-full">
+                <p className="text-xs uppercase tracking-wider text-muted-foreground font-mono mb-3">
+                  Sidebar
+                </p>
+                <div className="space-y-1.5">
+                  {["Overview", "Components", "Tokens", "Icons", "Changelog"].map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-md px-2.5 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors cursor-default"
+                    >
+                      {item}
                     </div>
-                  </div>
-                </ResizablePanel>
-                <ResizableHandle withHandle />
-                <ResizablePanel defaultSize={70} minSize={30}>
-                  <div className="p-4 h-full">
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground font-mono mb-3">
-                      Content
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      Drag the handle to resize panels. This pattern is common
-                      for sidebars, file explorers, and split-view editors.
-                    </p>
-                  </div>
-                </ResizablePanel>
-              </ResizablePanelGroup>
-            </div>
-          </div>
-
-          {/* Three-panel layout */}
-          <div>
-            <p className="text-sm font-medium text-foreground mb-3">
-              Three-panel layout
-            </p>
-            <div className="rounded-lg border border-border overflow-hidden">
-              <ResizablePanelGroup orientation="horizontal" className="min-h-48">
-                <ResizablePanel defaultSize={20} minSize={15}>
-                  <div className="p-4 h-full">
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground font-mono mb-3">
-                      Explorer
-                    </p>
-                    <div className="space-y-1">
-                      {["src/", "components/", "utils/", "hooks/", "styles/"].map((item) => (
-                        <div
-                          key={item}
-                          className="flex items-center gap-2 rounded-md px-2 py-1 text-sm text-muted-foreground"
-                        >
-                          <FolderIcon className="size-3.5" />
-                          {item}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </ResizablePanel>
-                <ResizableHandle />
-                <ResizablePanel defaultSize={55} minSize={30}>
-                  <div className="p-4 h-full">
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground font-mono mb-3">
-                      Editor
-                    </p>
-                    <div className="space-y-1 font-mono text-xs text-muted-foreground">
-                      <p><span className="text-blue-400">import</span> {"{"} cn {"}"} <span className="text-blue-400">from</span> <span className="text-green-400">&quot;@/lib/utils&quot;</span></p>
-                      <p>&nbsp;</p>
-                      <p><span className="text-blue-400">export function</span> <span className="text-yellow-400">Button</span>() {"{"}</p>
-                      <p>&nbsp;&nbsp;<span className="text-blue-400">return</span> &lt;button&gt;Click&lt;/button&gt;</p>
-                      <p>{"}"}</p>
-                    </div>
-                  </div>
-                </ResizablePanel>
-                <ResizableHandle />
-                <ResizablePanel defaultSize={25} minSize={15}>
-                  <div className="p-4 h-full">
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground font-mono mb-3">
-                      Inspector
-                    </p>
-                    <div className="space-y-2 text-sm text-muted-foreground">
-                      <div>
-                        <p className="text-xs text-muted-foreground/60">Type</p>
-                        <p>Function Component</p>
-                      </div>
-                      <div>
-                        <p className="text-xs text-muted-foreground/60">Props</p>
-                        <p>className, variant, size</p>
-                      </div>
-                    </div>
-                  </div>
-                </ResizablePanel>
-              </ResizablePanelGroup>
-            </div>
-          </div>
+                  ))}
+                </div>
+              </div>
+            </ResizablePanel>
+            <ResizableHandle withHandle />
+            <ResizablePanel defaultSize={70} minSize={30}>
+              <div className="p-4 h-full">
+                <p className="text-xs uppercase tracking-wider text-muted-foreground font-mono mb-3">
+                  Content
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Drag the handle to resize panels. This pattern is common
+                  for sidebars, file explorers, and split-view editors.
+                </p>
+              </div>
+            </ResizablePanel>
+          </ResizablePanelGroup>
         </div>
       </Section>
 
@@ -676,12 +579,10 @@ export function LayoutShowcase() {
         title="Aspect Ratio"
         description="Maintain consistent proportions for media and content containers."
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-4 max-w-lg">
           {[
             { ratio: 16 / 9, label: "16:9" },
-            { ratio: 4 / 3, label: "4:3" },
             { ratio: 1, label: "1:1" },
-            { ratio: 21 / 9, label: "21:9" },
           ].map(({ ratio, label }) => (
             <div key={label}>
               <AspectRatio
@@ -710,60 +611,42 @@ export function LayoutShowcase() {
         title="Breadcrumb"
         description="Navigation trail showing the current page location in a hierarchy."
       >
-        <div className="space-y-6">
-          {/* Standard breadcrumb */}
-          <div>
-            <p className="text-sm font-medium text-foreground mb-3">
-              Standard
-            </p>
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="#">Home</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="#">Projects</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="#">Design System</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Components</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
+        <div className="space-y-4">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Projects</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Components</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
 
-          <Separator />
-
-          {/* Breadcrumb with ellipsis */}
-          <div>
-            <p className="text-sm font-medium text-foreground mb-3">
-              With overflow ellipsis
-            </p>
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="#">Home</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbEllipsis />
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="#">Layout</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbEllipsis />
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Layout</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
         </div>
       </Section>
 

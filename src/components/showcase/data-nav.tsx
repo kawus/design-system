@@ -188,8 +188,6 @@ const issues = [
   { id: "LIN-140", status: "Done", title: "Add keyboard navigation to data table", priority: "Medium", assignee: "JR", date: "Mar 22" },
   { id: "LIN-139", status: "Todo", title: "Design empty state illustrations", priority: "Low", assignee: "EP", date: "Mar 21" },
   { id: "LIN-138", status: "In Progress", title: "Migrate dropdown menu to Base UI primitives", priority: "High", assignee: "KA", date: "Mar 20" },
-  { id: "LIN-137", status: "Backlog", title: "Audit color contrast ratios for WCAG AA", priority: "Medium", assignee: "SM", date: "Mar 19" },
-  { id: "LIN-136", status: "Cancelled", title: "Add CSV export to analytics table", priority: "None", assignee: "JR", date: "Mar 18" },
 ]
 
 /* ------------------------------------------------------------------ */
@@ -303,32 +301,6 @@ function TabsShowcase() {
           </Tabs>
         </div>
 
-        {/* Pill-style tabs */}
-        <div className="bg-card rounded-xl p-8 ring-1 ring-foreground/5">
-          <p className="text-sm text-muted-foreground mb-4">Pill</p>
-          <Tabs defaultValue="all">
-            <TabsList className="rounded-full [&>*]:rounded-full">
-              <TabsTrigger value="all">All Issues</TabsTrigger>
-              <TabsTrigger value="mine">Assigned to Me</TabsTrigger>
-              <TabsTrigger value="mentions">Mentions</TabsTrigger>
-            </TabsList>
-            <TabsContent value="all" className="mt-4">
-              <div className="rounded-lg border border-foreground/5 p-4 text-sm text-muted-foreground">
-                Showing all 47 issues.
-              </div>
-            </TabsContent>
-            <TabsContent value="mine" className="mt-4">
-              <div className="rounded-lg border border-foreground/5 p-4 text-sm text-muted-foreground">
-                8 issues assigned to you.
-              </div>
-            </TabsContent>
-            <TabsContent value="mentions" className="mt-4">
-              <div className="rounded-lg border border-foreground/5 p-4 text-sm text-muted-foreground">
-                3 recent mentions.
-              </div>
-            </TabsContent>
-          </Tabs>
-        </div>
       </div>
     </div>
   )
@@ -583,6 +555,11 @@ function NavigationSidebarShowcase() {
 export function DataNavShowcase() {
   return (
     <div>
+      <div className="mb-16">
+        <h2 className="text-lg font-medium tracking-tight mb-2">Data & Navigation</h2>
+        <p className="text-sm text-muted-foreground max-w-2xl">Tables, command palette, dropdown menus, tabs, and sidebar navigation.</p>
+      </div>
+
       <TableShowcase />
       <Separator className="my-16" />
       <TabsShowcase />
