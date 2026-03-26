@@ -23,7 +23,7 @@ const sections = [
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<string>("foundation");
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
 
   const toggleTheme = () => {
     setIsDark(!isDark);
