@@ -190,6 +190,11 @@ export function OverviewShowcase({
               title: "Blog Post",
               desc: "Video, audio, code blocks, reader engagement",
             },
+            {
+              id: "ecommerce",
+              title: "E-commerce",
+              desc: "Product grid, detail page, shopping cart",
+            },
           ].map((example) => (
             <button
               key={example.id}

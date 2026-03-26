@@ -16,6 +16,7 @@ import { LayoutShowcase } from "@/components/showcase/layout";
 import { FormsShowcase } from "@/components/showcase/forms";
 import { PatternsShowcase } from "@/components/showcase/patterns";
 import { InstallationShowcase } from "@/components/showcase/installation";
+import { EcommerceShowcase } from "@/components/showcase/ecommerce";
 import { IconsShowcase } from "@/components/showcase/icons";
 import { OverviewShowcase } from "@/components/showcase/overview";
 
@@ -156,6 +157,12 @@ const sidebarGroups: SidebarGroup[] = [
         label: "Blog Post",
         component: BlogPostShowcase,
         description: "Rich blog post with video, audio players, code blocks, and reader engagement.",
+      },
+      {
+        id: "ecommerce",
+        label: "E-commerce",
+        component: EcommerceShowcase,
+        description: "Product grid, detail page, and shopping cart for a modern storefront.",
       },
     ],
   },
