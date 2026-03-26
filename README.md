@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Design System
 
-## Getting Started
+A component library and design system built on [shadcn/ui](https://ui.shadcn.com), inspired by Vercel and Linear. oklch color tokens, Geist typography, light/dark themes, and 41 installable components.
 
-First, run the development server:
+**[Live Docs](https://next-design-system-nu.vercel.app)** · **[Registry](https://next-design-system-nu.vercel.app/r/registry.json)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Install
+
+Add the registry to your project's `components.json`:
+
+```json
+{
+  "registries": {
+    "@ds": "https://next-design-system-nu.vercel.app/r/{name}.json"
+  }
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Install the theme and any components you need:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npx shadcn add @ds/theme
+npx shadcn add @ds/button @ds/card @ds/dialog
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Or install a component directly by URL:
 
-## Learn More
+```bash
+npx shadcn add https://next-design-system-nu.vercel.app/r/button.json
+```
 
-To learn more about Next.js, take a look at the following resources:
+## What's included
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Foundation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Colors** — oklch color palette with semantic tokens (primary, muted, destructive, etc.) for light and dark themes
+- **Typography** — Geist Sans + Geist Mono, 7-step type scale from Display to Micro
+- **Surfaces** — Spacing scale, border radius tokens, and visual effects (glow, glass, gradient borders, noise)
 
-## Deploy on Vercel
+### Components (41)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Accordion, Alert, Alert Dialog, Aspect Ratio, Avatar, Badge, Breadcrumb, Button, Calendar, Card, Checkbox, Collapsible, Command, Context Menu, Dialog, Dropdown Menu, Hover Card, Input, Input Group, Label, Menubar, Navigation Menu, Pagination, Popover, Progress, Radio Group, Resizable, Scroll Area, Select, Separator, Sheet, Skeleton, Slider, Sonner, Switch, Table, Tabs, Textarea, Toggle, Toggle Group, Tooltip
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Example Pages
+
+Full-page compositions showing the system in use:
+
+- **Dashboard** — Analytics with stat cards, activity feeds, settings, pricing
+- **Landing Page** — SaaS marketing with hero, features, social proof, CTA
+- **Article** — Long-form editorial with callouts and structured prose
+- **Blog Post** — Rich content with video/audio players and code blocks
+
+## Stack
+
+- [Next.js](https://nextjs.org) (App Router)
+- [Tailwind CSS 4](https://tailwindcss.com)
+- [shadcn/ui](https://ui.shadcn.com)
+- [Radix UI](https://www.radix-ui.com) (via Base UI)
+- [Geist](https://vercel.com/font) (Sans + Mono)
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+Build the shadcn registry:
+
+```bash
+npm run registry:build
+```
+
+The production build runs `shadcn build` before `next build` automatically.
+
+## Requirements
+
+- Next.js 15+
+- Tailwind CSS 4
+- shadcn/ui initialized (`npx shadcn init`)
+- TypeScript recommended
