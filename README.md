@@ -2,7 +2,7 @@
 
 A component library and design system built on [shadcn/ui](https://ui.shadcn.com), inspired by Vercel and Linear. oklch color tokens, Geist typography, light/dark themes, and 41 installable components.
 
-**[Live Docs](https://next-design-system-nu.vercel.app)** · **[Registry](https://next-design-system-nu.vercel.app/r/registry.json)**
+**[Live Docs](https://nds.kawus.com)** · **[Registry](https://nds.kawus.com/r/registry.json)**
 
 ## Install
 
@@ -11,7 +11,7 @@ Add the registry to your project's `components.json`:
 ```json
 {
   "registries": {
-    "@ds": "https://next-design-system-nu.vercel.app/r/{name}.json"
+    "@ds": "https://nds.kawus.com/r/{name}.json"
   }
 }
 ```
@@ -26,7 +26,7 @@ npx shadcn add @ds/button @ds/card @ds/dialog
 Or install a component directly by URL:
 
 ```bash
-npx shadcn add https://next-design-system-nu.vercel.app/r/button.json
+npx shadcn add https://nds.kawus.com/r/button.json
 ```
 
 ## What's included

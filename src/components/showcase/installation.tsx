@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 
-const REGISTRY_URL = "https://next-design-system-nu.vercel.app/r";
+const REGISTRY_URL = "https://nds.kawus.com/r";
 
 const components = [
   "accordion", "alert", "alert-dialog", "aspect-ratio", "avatar",

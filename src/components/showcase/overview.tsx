@@ -103,7 +103,7 @@ export function OverviewShowcase({
           <div className="p-5 font-mono text-[13px] leading-relaxed">
             <p className="text-muted-foreground/50"># Add the registry</p>
             <p className="text-foreground mt-1">
-              npx shadcn add --registry https://next-design-system-nu.vercel.app/r button
+              npx shadcn add --registry https://nds.kawus.com/r button
             </p>
           </div>
         </div>
